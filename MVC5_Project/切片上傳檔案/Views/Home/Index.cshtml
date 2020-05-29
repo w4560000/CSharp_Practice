@@ -1,0 +1,80 @@
+﻿<br />
+<input id="uploadFile" type="file" onchange="upload(this)" />
+
+<br />
+<span id="fileSize"></span>
+
+<br />
+<input id="uploadButton" type="button" onclick="submit()" value="上傳" />
+
+<br />
+<br />
+<span class="uploadProgress">upload progress:</span>
+<progress class="uploadProgress"></progress>
+<span class="uploadProgress" id="progressValue"></span>
+<script>
+    $(function () {
+        $('.uploadProgress').css('display', 'none');
+    });
+
+    var uploadUrl = "../UploadHandler/UploadHandler.ashx";
+
+    function upload(e) {
+        let size = e.files[0] !== null ? Math.floor(e.files[0].size / 1024) : 0;
+        $("#fileSize").html(size + "KB");
+    };
+
+    function submit() {
+        $('.uploadProgress').css('display', 'block');
+        uploadFile($("#uploadFile")[0].files[0]);
+    }
+
+    function uploadFile(file) {
+
+        var chunkSize = 1024 * 2; //2KB Chunk size
+        var fileSize = file.size;
+        var currentChunk = 1;
+        var totalChunks = Math.ceil(fileSize / chunkSize);
+        var fileChunkArray = [];
+
+        while (currentChunk <= totalChunks) {
+
+            var offset = (currentChunk - 1) * chunkSize;
+            var currentFilePart = file.slice(offset, (offset + chunkSize));
+
+            fileChunkArray.push(currentFilePart);
+            currentChunk++;
+        }
+
+        $('progress').prop('max', totalChunks);
+
+        fileChunkArray.forEach((element, index) => uploadChunkFile(element, ++index, totalChunks, file.name));
+    }
+
+    function uploadChunkFile(file, currentChunk, totalChunks, fileName) {
+
+        let form = new FormData();
+        form.append("file", file);
+        form.append("currentChunk", currentChunk);
+        form.append("totalChunks", totalChunks);
+        form.append("fileName", fileName);
+
+        $.ajax({
+            url: uploadUrl,
+            type: "POST",
+            data: form,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                if (res.statusCode == 200 || res.statusCode == 201) {
+                    $('progress').val(currentChunk);
+                    $('#progressValue').html(Math.round(currentChunk / totalChunks * 100) + '%');
+                }
+
+                if (res.statusCode == 200 || res.statusCode == 503) {
+                    alert(res.mes);
+                }
+            }
+        });
+    }
+</script>

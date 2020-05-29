@@ -1,0 +1,40 @@
+version: "3.3"
+services:
+  netcoreapi:
+    container_name: netcoreapi
+    image: leo/netcoreapi:latest
+    ports:
+      - 5000:5000
+    depends_on:
+      - sqlserver
+    links:
+      - sqlserver
+    volumes:
+      - ./docker-compose_api_mssql/appsettings.json:/app/appsettings.json:ro
+    restart: always
+    networks:
+         extnetwork:
+            ipv4_address: 172.19.0.2
+
+  sqlserver:
+    container_name: sqlserver
+    image: mssqlimagetest
+    restart: always
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_PID: Developer
+      SA_PASSWORD: 'NetCore123'
+    ports:
+      - 1433 
+    networks:
+       extnetwork:
+          ipv4_address: 172.19.0.3
+
+networks:
+   extnetwork:
+      driver: bridge
+      ipam:
+        driver: default
+        config:
+          -
+            subnet: 172.19.0.0/16
