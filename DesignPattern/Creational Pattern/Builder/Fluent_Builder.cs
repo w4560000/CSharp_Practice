@@ -1,4 +1,4 @@
-﻿using DesignPattern.Builder;
+﻿using System;
 using System.Collections.Generic;
 
 namespace DesignPattern.Fluent_Builder
@@ -8,7 +8,7 @@ namespace DesignPattern.Fluent_Builder
     /// 步驟流程與傳入參數由外部決定
     /// 
     /// 在擁有大量參數的類別中，未必每一項參數都必須要寫入
-    /// 此時由外部控制可以更清楚明白傳入了那些參數，更容易閱讀
+    /// 此時由外部控制可以更清楚明白傳入了哪些參數，更容易閱讀
     /// </summary>
     public class Fluent_Builder : IExecute
     {
@@ -16,24 +16,24 @@ namespace DesignPattern.Fluent_Builder
         {
             Juice orangeJuice = new JuiceBuilder().PrepareFruit("買橘子 -> 剝皮 -> 清洗 -> 切塊")
                                                   .Blend("將橘子放入果汁機中")
-                                                  .PourIntoCup("將橘子汁裝杯").Finish();
+                                                  .PourIntoCup("將橘子汁裝杯")
+                                                  .Finish();
 
             orangeJuice.ShowProcessStep();
         }
     }
 
-    public interface IJuiceFluentBuilder
+    public class Juice
     {
-        JuiceBuilder PrepareFruit(string prepareFruitStep);
+        public List<string> ManufactureProcess { get; set; } = new List<string>();
 
-        JuiceBuilder Blend(string blendStep);
-
-        JuiceBuilder PourIntoCup(string pourIntoCupStep);
-
-        Juice Finish();
+        public void ShowProcessStep()
+        {
+            ManufactureProcess.ForEach(x => Console.WriteLine(x));
+        }
     }
 
-    public class JuiceBuilder : IJuiceFluentBuilder
+    public class JuiceBuilder
     {
         private string _prepareFruitStep = string.Empty;
         private string _blendStep = string.Empty;

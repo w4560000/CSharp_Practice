@@ -24,7 +24,9 @@
 
         Builder,
 
-        Fluent_Builder
+        Fluent_Builder,
+
+        Faceted_Fluent_Builder
 
         #endregion Builder
     }

@@ -20,17 +20,20 @@ namespace DesignPattern.Builder
     /// 比如成立一筆訂單後，會再去減庫存，甚至是更多繁瑣步驟
     /// 都可以透過builder pattern完成，明確定義了方法步驟順序
     /// 各個不同產品只需要處理實作方法而已，不用管生產步驟
+    /// 
+    /// 缺點:
+    /// 在擁有大量參數時，未必每個需要使用到
     ///
     public class Builder : IExecute
     {
         public void main()
         {
-            JuiceDirector appleJuice = new JuiceDirector(new AppleJuiceBuilder());
-            JuiceDirector bananaJuice = new JuiceDirector(new BananaJuiceBuilder());
+            JuiceDirector appleJuice = new JuiceDirector(new AppleJuiceBuilder()).MakeJuice();
+            JuiceDirector bananaJuice = new JuiceDirector(new BananaJuiceBuilder()).MakeJuice();
 
             appleJuice.GetJuice().ShowProcessStep();
 
-            Console.WriteLine("-------------------------");
+            Console.WriteLine("\n-------------------------\n");
 
             bananaJuice.GetJuice().ShowProcessStep();
         }
@@ -114,14 +117,15 @@ namespace DesignPattern.Builder
         public JuiceDirector(IJuiceBuilder juiceBuilder)
         {
             _juiceBuilder = juiceBuilder;
-            MakeJuice();
         }
 
-        private void MakeJuice()
+        public JuiceDirector MakeJuice()
         {
             _juiceBuilder.PrepareFruit();
             _juiceBuilder.Blend();
             _juiceBuilder.PourIntoCup();
+
+            return this;
         }
 
         public Juice GetJuice()
