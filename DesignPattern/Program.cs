@@ -4,7 +4,7 @@
     {
         private static void Main(string[] args)
         {
-            SwitchExecute.Builder.EnterMethod();
+            SwitchExecute.Object_Adapter.EnterMethod();
         }
     }
 }

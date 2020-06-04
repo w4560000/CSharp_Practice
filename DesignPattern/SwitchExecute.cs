@@ -26,8 +26,25 @@
 
         Fluent_Builder,
 
-        Faceted_Fluent_Builder
+        Faceted_Fluent_Builder,
 
         #endregion Builder
+
+        #region Singleton
+
+        Singleton,
+
+        Lazy_Singleton,
+
+        #endregion Singleton
+
+        #region Adapter
+
+        Class_Adapter,
+
+        Object_Adapter,
+
+        #endregion Adapter
+
     }
 }
