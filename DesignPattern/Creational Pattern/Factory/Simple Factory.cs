@@ -42,11 +42,17 @@ namespace DesignPattern.Simple_Factory
         }
     }
 
+    /// <summary>
+    /// (Product)
+    /// </summary>
     abstract class Car
     {
         public abstract void MakeCar();
     }
 
+    /// <summary>
+    /// (ConcreteProduct)
+    /// </summary>
     class Audi : Car
     {
         public override void MakeCar()
@@ -55,6 +61,9 @@ namespace DesignPattern.Simple_Factory
         }
     }
 
+    /// <summary>
+    /// (ConcreteProduct)
+    /// </summary>
     class BMW : Car
     {
         public override void MakeCar()
@@ -63,6 +72,9 @@ namespace DesignPattern.Simple_Factory
         }
     }
 
+    /// <summary>
+    /// (Factory)
+    /// </summary>
     class CarFactory
     {
         public static Car CreateCar(CarEnum car)

@@ -40,6 +40,9 @@ namespace DesignPattern.Abstract_Factory
         }
     }
 
+    /// <summary>
+    /// (AbstractFactory)
+    /// </summary>
     public interface ICarFactory
     {
         AudiManufacture CreateAudiCar();
@@ -47,6 +50,9 @@ namespace DesignPattern.Abstract_Factory
         BMWManufacture CreateBMWCar();
     }
 
+    /// <summary>
+    /// (ConcreteFactory)
+    /// </summary>
     public class CarFactory : ICarFactory
     {
         public AudiManufacture CreateAudiCar()
@@ -60,6 +66,9 @@ namespace DesignPattern.Abstract_Factory
         }
     }
 
+    /// <summary>
+    /// (AbstractProduct)
+    /// </summary>
     public interface ICarManufacture
     {
         public void ManufactureEngine();
@@ -67,6 +76,9 @@ namespace DesignPattern.Abstract_Factory
         public void ManufactureSideDoor();
     }
 
+    /// <summary>
+    /// (Product)
+    /// </summary>
     public class AudiManufacture : ICarManufacture
     {
         public void ManufactureEngine()
@@ -80,6 +92,9 @@ namespace DesignPattern.Abstract_Factory
         }
     }
 
+    /// <summary>
+    /// (Product)
+    /// </summary>
     public class BMWManufacture : ICarManufacture
     {
         public void ManufactureEngine()

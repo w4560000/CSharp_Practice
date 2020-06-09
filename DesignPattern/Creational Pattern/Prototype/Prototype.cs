@@ -27,12 +27,18 @@ namespace DesignPattern.Prototype
         }
     }
 
+    /// <summary>
+    /// (Prototype)
+    /// </summary>
     public abstract class PrototypeBase : ICloneable
     {
         // Methods
         public abstract object Clone();
     }
 
+    /// <summary>
+    /// (ConcretePrototype)
+    /// </summary>
     public class ConcretePrototype1 : PrototypeBase
     {
         public int Id { get; set; }

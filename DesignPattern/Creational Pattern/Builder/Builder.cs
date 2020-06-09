@@ -21,8 +21,11 @@ namespace DesignPattern.Builder
     /// 都可以透過builder pattern完成，明確定義了方法步驟順序
     /// 各個不同產品只需要處理實作方法而已，不用管生產步驟
     /// 
+    /// 用途:
+    /// 當需要統一操作步驟
+    /// 
     /// 缺點:
-    /// 在擁有大量參數時，未必每個需要使用到
+    /// 在擁有大量參數時，未必每個都需要使用到
     ///
     public class Builder : IExecute
     {
@@ -39,6 +42,9 @@ namespace DesignPattern.Builder
         }
     }
 
+    /// <summary>
+    /// (Proudct)
+    /// </summary>
     public class Juice
     {
         public List<string> ManufactureProcess { get; set; } = new List<string>();
@@ -48,6 +54,10 @@ namespace DesignPattern.Builder
             ManufactureProcess.ForEach(x => Console.WriteLine(x));
         }
     }
+
+    /// <summary>
+    /// (Builder)
+    /// </summary>
 
     public interface IJuiceBuilder
     {
@@ -60,6 +70,9 @@ namespace DesignPattern.Builder
         Juice GetJuiceInstance();
     }
 
+    /// <summary>
+    /// (ConcreteBuilder)
+    /// </summary>
     public class AppleJuiceBuilder : IJuiceBuilder
     {
         private Juice _juice = new Juice();
@@ -85,6 +98,9 @@ namespace DesignPattern.Builder
         }
     }
 
+    /// <summary>
+    /// (ConcreteBuilder)
+    /// </summary>
     public class BananaJuiceBuilder : IJuiceBuilder
     {
         private Juice _juice = new Juice();
@@ -110,6 +126,9 @@ namespace DesignPattern.Builder
         }
     }
 
+    /// <summary>
+    /// (Director)
+    /// </summary>
     public class JuiceDirector
     {
         private IJuiceBuilder _juiceBuilder;

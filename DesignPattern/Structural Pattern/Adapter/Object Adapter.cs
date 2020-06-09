@@ -4,14 +4,23 @@ using System.Collections.Generic;
 namespace DesignPattern.Object_Adapter
 {
     /// <summary>
+    /// 定義:
+    /// 透過一個轉接類別，使得兩個不相容的類別正常運作
+    ///
+    /// 角色:
+    /// 1. Target : 定義轉接動作 [ITarget]
+    /// 2. Client : 定義使用不相容系統的使用方 [ThirdPartyBillingSystem]
+    /// 3. Adaptee : 定義需要被轉接的不相容系統 [OrderSystem] [DepositSystem]
+    /// 4. Adapter : 定義把Adptee(不相容系統)轉接成符合Client需求，繼承Interface Target，才能清楚明白轉接的動作 [CurrencyAdapter]
+    ///
     /// 與Class Adpater的差別在於:
     /// Object Adapter Pattern的Adapter在轉接Adaptee時，不透過繼承的方式
     /// 而是透過建構子傳入Adaptee的物件來做轉換。
-    ///
+    /// 
     /// 範例說明:
     /// 延續Class Adapter的範例，假設今天有新需求需要多轉接儲值單系統
     /// 而因Class Adapter無法多重繼承造成擴充不易的缺點，故由Object Adapter來實現。
-    ///
+    /// 
     /// 優點:
     /// 由於Adaptee是透過建構子傳入，所以解決了Class Adpater要擴充功能時無法多重繼承的缺點。
     /// </summary>
@@ -31,7 +40,7 @@ namespace DesignPattern.Object_Adapter
             depositSystem.AddDeposit("Tom", 500, "HKD");
             depositSystem.AddDeposit("Jason", 1500, "JPY");
 
-            OrderCurrencyAdapter targetAdapter = new OrderCurrencyAdapter(orderSystem, depositSystem);
+            CurrencyAdapter targetAdapter = new CurrencyAdapter(orderSystem, depositSystem);
 
             ThirdPartyBillingSystem billingSystem = new ThirdPartyBillingSystem(targetAdapter);
             billingSystem.ProcessOrderList();
@@ -58,7 +67,8 @@ namespace DesignPattern.Object_Adapter
     }
 
     /// <summary>
-    /// The 'ITarget' interface
+    /// 定義轉接動作 (ITarget)
+    /// 取得帳單清單和取得儲值訂單
     /// </summary>
     public interface ITarget
     {
@@ -68,8 +78,7 @@ namespace DesignPattern.Object_Adapter
     }
 
     /// <summary>
-    /// The 'Client' class
-    /// 必須用台幣付款
+    /// 第三方支付系統(限定用台幣付款) (Client)
     /// </summary>
     public class ThirdPartyBillingSystem
     {
@@ -102,8 +111,7 @@ namespace DesignPattern.Object_Adapter
     }
 
     /// <summary>
-    /// The 'Adaptee1' class
-    /// OrderSystem 輸入的貨幣單位不一致
+    /// orderSystem 輸入的貨幣單位不一致 (Adaptee1)
     /// </summary>
     public class OrderSystem
     {
@@ -122,8 +130,7 @@ namespace DesignPattern.Object_Adapter
     }
 
     /// <summary>
-    /// The 'Adaptee2' class
-    /// DepositSystem 輸入的貨幣單位不一致
+    /// depositSystem 輸入的貨幣單位不一致 (Adaptee2)
     /// </summary>
     public class DepositSystem
     {
@@ -142,15 +149,14 @@ namespace DesignPattern.Object_Adapter
     }
 
     /// <summary>
-    /// The 'Adapter' class
-    /// 因為貨幣單位不一致，使得金額無法計算，由此類別統一轉換為新台幣
+    /// 因為貨幣單位不一致，使得金額無法計算，由此類別統一轉換為新台幣 (Adapter)
     /// </summary>
-    public class OrderCurrencyAdapter : ITarget
+    public class CurrencyAdapter : ITarget
     {
         private OrderSystem _orderSystem;
         private DepositSystem _depositSystem;
 
-        public OrderCurrencyAdapter(OrderSystem orderSystem, DepositSystem depositSystem)
+        public CurrencyAdapter(OrderSystem orderSystem, DepositSystem depositSystem)
         {
             _orderSystem = orderSystem;
             _depositSystem = depositSystem;

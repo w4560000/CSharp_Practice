@@ -10,9 +10,9 @@ namespace DesignPattern.Factory
     /// 角色: 
     /// 1.Product：Product角色，定義工廠方法所建立的物件的(介面or抽象類別) [Car]
     /// 2.ConcreteProduct：具體Product角色，實現Product(介面方法or抽象方法) [Audi]、[BMW]
-    /// 3.Factory: [ICarFactory]
-    ///             (1)抽象的工廠角色，宣告工廠方法，該方法返回一個Product型別的物件
-    ///             (2)Factory可以定義一個工廠方法的預設實現，返回一個預設的ConcreteProduct物件。可以呼叫工廠方法以建立一個Product物件
+    /// 3.Factory: (1)抽象的工廠角色，宣告工廠方法，該方法返回一個Product型別的物件
+    ///            (2)Factory可以定義一個工廠方法的預設實現，返回一個預設的ConcreteProduct物件。可以呼叫工廠方法以建立一個Product物件
+    ///            [ICarFactory]
     /// 4.ConcreteFactory：具體的工廠角色，建立具體Product的子工廠，重寫工廠方法以返回一個ConcreteProduct例項 [AudiCarFactory]、[BMWCarFactory]
     /// 
     /// 範例設計邏輯:
@@ -44,16 +44,25 @@ namespace DesignPattern.Factory
         }
     }
 
+    /// <summary>
+    /// (Factory)
+    /// </summary>
     interface ICarFactory
     {
         Car CreateCar();
     }
 
+    /// <summary>
+    /// (Product)
+    /// </summary>
     internal abstract class Car
     {
         public abstract void MakeCar();
     }
 
+    /// <summary>
+    /// (ConcreteFactory)
+    /// </summary>
     internal class AudiCarFactory : ICarFactory
     {
         public Car CreateCar()
@@ -62,6 +71,9 @@ namespace DesignPattern.Factory
         }
     }
 
+    /// <summary>
+    /// (ConcreteProduct)
+    /// </summary>
     class Audi : Car
     {
         public override void MakeCar()
@@ -70,6 +82,9 @@ namespace DesignPattern.Factory
         }
     }
 
+    /// <summary>
+    /// (ConcreteFactory)
+    /// </summary>
     internal class BMWCarFactory : ICarFactory
     {
         public Car CreateCar()
@@ -78,6 +93,9 @@ namespace DesignPattern.Factory
         }
     }
 
+    /// <summary>
+    /// (ConcreteProduct)
+    /// </summary>
     class BMW : Car
     {
         public override void MakeCar()

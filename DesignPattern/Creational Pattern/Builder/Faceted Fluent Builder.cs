@@ -6,6 +6,9 @@ namespace DesignPattern.Faceted_Fluent_Builder
     /// Fluent_Build加強版
     /// 
     /// 當物件需要更細的去區分時，可使用此pattern，更易方便閱讀
+    /// 
+    /// 用途:
+    /// 當需要操作的參數過於複雜時，需要個別區分時可以使用。
     /// </summary>
     public class Faceted_Fluent_Builder : IExecute
     {

@@ -46,5 +46,27 @@
 
         #endregion Adapter
 
+        Bridge,
+
+        #region Composite
+
+        Transparency_Composite,
+
+        Safety_Composite,
+
+        #endregion Composite
+
+        #region Decorator
+
+        Decorator,
+
+        #endregion Decorator
+
+        #region Facade
+
+        Facade,
+
+        #endregion Facade
+
     }
 }

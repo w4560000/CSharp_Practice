@@ -9,6 +9,9 @@ namespace DesignPattern.Fluent_Builder
     /// 
     /// 在擁有大量參數的類別中，未必每一項參數都必須要寫入
     /// 此時由外部控制可以更清楚明白傳入了哪些參數，更容易閱讀
+    /// 
+    /// 用途:
+    /// 不想再多新建ConcreteBuilder時可以使用，參數由user自己操作
     /// </summary>
     public class Fluent_Builder : IExecute
     {
