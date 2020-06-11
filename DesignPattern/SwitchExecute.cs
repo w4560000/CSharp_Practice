@@ -46,7 +46,11 @@
 
         #endregion Adapter
 
+        #region Bridge
+
         Bridge,
+
+        #endregion Bridge
 
         #region Composite
 
@@ -68,5 +72,28 @@
 
         #endregion Facade
 
+        #region Flyweight
+
+        Flyweight,
+
+        #endregion Flyweight
+
+        #region Proxy
+
+        Proxy,
+
+        #endregion Proxy
+
+        #region Chain_of_Responsibility
+
+        Chain_of_Responsibility,
+
+        #endregion Chain_of_Responsibility
+
+        #region Command
+
+        Command,
+
+        #endregion Command
     }
 }

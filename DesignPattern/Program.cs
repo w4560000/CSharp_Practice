@@ -4,7 +4,7 @@
     {
         private static void Main(string[] args)
         {
-            SwitchExecute.Facade.EnterMethod();
+            SwitchExecute.Command.EnterMethod();
         }
     }
 }
