@@ -31,7 +31,7 @@
 
     function uploadFile(file) {
 
-        var chunkSize = 1024 * 2; //2KB Chunk size
+        var chunkSize = 1024 * 1024 * 2; //2MB Chunk size
         var fileSize = file.size;
         var currentChunk = 1;
         var totalChunks = Math.ceil(fileSize / chunkSize);

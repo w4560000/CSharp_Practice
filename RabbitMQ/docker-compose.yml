@@ -1,0 +1,66 @@
+version: "3.3"
+services:
+  rabbitmq1:
+    build: .
+    container_name: myrabbitmq1
+    image: rabbitmq:3.8.3-management
+    environment:
+      - RABBITMQ_ERLANG_COOKIE='rabbitcookie'
+    ports:
+      - 5672:5672
+      - 15672:15672
+    
+
+  rabbitmq2:
+    build: .
+    container_name: myrabbitmq2
+    image: rabbitmq:3.8.3-management
+    environment:
+      - RABBITMQ_ERLANG_COOKIE='rabbitcookie'
+    ports:
+      - 5673:5672
+      - 15673:15672
+    links:
+      - rabbitmq1
+      
+  rabbitmq3:
+    build: .
+    container_name: myrabbitmq3
+    image: rabbitmq:3.8.3-management
+    environment:
+      - RABBITMQ_ERLANG_COOKIE='rabbitcookie'
+    ports:
+      - 5674:5672
+      - 15674:15672
+    links:
+      - rabbitmq1
+      - rabbitmq2 
+      
+  rabbitmq4:
+    build: .
+    container_name: myrabbitmq4
+    image: rabbitmq:3.8.3-management
+    environment:
+      - RABBITMQ_ERLANG_COOKIE='rabbitcookie'
+    ports:
+      - 5675:5672
+      - 15675:15672
+    links:
+      - rabbitmq1
+      - rabbitmq2  
+      - rabbitmq3 
+      
+  rabbitmq5:
+    build: .
+    container_name: myrabbitmq5
+    image: rabbitmq:3.8.3-management
+    environment:
+      - RABBITMQ_ERLANG_COOKIE='rabbitcookie'
+    ports:
+      - 5676:5672
+      - 15676:15672
+    links:
+      - rabbitmq1
+      - rabbitmq2  
+      - rabbitmq3 
+      - rabbitmq4

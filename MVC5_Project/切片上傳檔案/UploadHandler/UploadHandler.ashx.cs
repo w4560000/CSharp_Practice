@@ -17,7 +17,6 @@ namespace 切片上傳檔案.UploadHandler
 
         public void ProcessRequest(HttpContext context)
         {
-            Thread.Sleep(500);
             Request = context.Request;
             Response = context.Response;
 
@@ -66,11 +65,11 @@ namespace 切片上傳檔案.UploadHandler
 
             try
             {
-                byte[] buffer = new byte[4096];
+                byte[] buffer = new byte[2 * 1024 * 1024];
                 int bytesRead = 0;
                 stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
 
-                stream.Seek((currentChunk - 1) * 2 * 1024, SeekOrigin.Begin);
+                stream.Seek((currentChunk - 1) * 2 * 1024 * 1024, SeekOrigin.Begin);
                 while ((bytesRead = chunkStream.Read(buffer, 0, buffer.Length)) != 0)
                 {
                     stream.Write(buffer, 0, bytesRead);

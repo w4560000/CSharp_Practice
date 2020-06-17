@@ -6,13 +6,13 @@ namespace DesignPattern.Command
     /// <summary>
     /// 定義:
     /// 將命令封裝成物件，讓使用者可以動態執行命令
-    /// 
+    ///
     /// 角色:
     /// Invoker: 定義接收和執行命令的類別 [Invoker]
     /// Command: 定義執行命令的抽象類別 [CommandClass]
     /// ConcreteCommand: 繼承至Command的抽象類別，並實作執行命令方法 [GoAheadCommand] [TurnLeftCommand] [TurnRightCommand]
     /// Receiver: 定義命令的物件 [ReceiverRobot]
-    /// 
+    ///
     /// 範例來源:
     /// https://xyz.cinc.biz/2013/07/command-pattern.html
     /// </summary>
@@ -44,7 +44,7 @@ namespace DesignPattern.Command
     /// <summary>
     /// 用來發出命令的類別 (Invoker)
     /// </summary>
-    class Invoker
+    internal class Invoker
     {
         private IList<CommandClass> cmds = new List<CommandClass>();
 
@@ -60,13 +60,12 @@ namespace DesignPattern.Command
                 command.Execute();
             }
         }
-
     }
 
     /// <summary>
     /// 命令的抽像類別，用來衍生各種命令，建構時，須設定實際執行命令的物件 (Command)
     /// </summary>
-    abstract class CommandClass
+    internal abstract class CommandClass
     {
         protected ReceiverRobot robot;
 
@@ -83,7 +82,7 @@ namespace DesignPattern.Command
     /// <summary>
     /// 向前走一步的命令 (ConcreteCommand)
     /// </summary>
-    class GoAheadCommand : CommandClass
+    internal class GoAheadCommand : CommandClass
     {
         public GoAheadCommand(ReceiverRobot robot)
             : base(robot)
@@ -99,7 +98,7 @@ namespace DesignPattern.Command
     /// <summary>
     /// 向左轉的命令 (ConcreteCommand)
     /// </summary>
-    class TurnLeftCommand : CommandClass
+    internal class TurnLeftCommand : CommandClass
     {
         public TurnLeftCommand(ReceiverRobot robot)
             : base(robot)
@@ -115,7 +114,7 @@ namespace DesignPattern.Command
     /// <summary>
     /// 向右轉的命令 (ConcreteCommand)
     /// </summary>
-    class TurnRightCommand : CommandClass
+    internal class TurnRightCommand : CommandClass
     {
         public TurnRightCommand(ReceiverRobot robot)
             : base(robot)
@@ -131,7 +130,7 @@ namespace DesignPattern.Command
     /// <summary>
     /// 實際執行命令的物件 (ConcreteCommand)
     /// </summary>
-    class ReceiverRobot
+    internal class ReceiverRobot
     {
         public void GoAhead()
         {
