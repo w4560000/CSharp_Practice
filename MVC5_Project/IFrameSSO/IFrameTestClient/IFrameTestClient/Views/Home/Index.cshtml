@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script type="text/javascript">
+    function postMessage() {
+        window.frames[0].postMessage('MessageFromParentPage', 'https://localhost:44312/');
+    }
+
+    $(function () {
+        //增加接收的方法 使用匿名labda方法
+        //event參數裡面有data屬性代表接收資料
+        window.addEventListener('message', (event) => {
+            alert(event.data);
+            $('#status').val(event.data);
+        });
+    });
+</script>
+
+帳號狀態: <input type="text" id="status" />
+<input type="button" id="sendMessage_client" name="testetst" value="發送消息至子頁面Iframe" onclick="postMessage()"/>
+<iframe id="myframe" src="https://localhost:44312/Home/Index" width="600" height="800"></iframe>

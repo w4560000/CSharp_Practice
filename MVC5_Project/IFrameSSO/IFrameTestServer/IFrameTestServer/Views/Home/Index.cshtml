@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+Login
+<input type="button" id="login" value="登入" />
+
+<br />
+
+Logout
+<input type="button" id="logout" value="登出" />
+
+<br />
+<br />
+
+cookieData: @ViewBag.testData
+<br />
+sessionData: @ViewBag.sessionData
+
+<script type='text/javascript'>
+
+    $(function () {
+        window.addEventListener("message", e => alert(e.data), false);
+    });
+
+    function postMessage(message) {
+        if (window !== top) {
+            window.parent.postMessage(message, 'https://localhost:44332');
+        }
+    }
+
+    $("#login").click(() => {
+        $.get("@Url.Action("Login", "Home")")
+            .then((data) => {
+                if (data === "Success") {
+                    postMessage('登入成功')
+                    window.location.reload();
+                }
+            });
+    });
+
+        $("#logout").click(() => {
+        $.get("@Url.Action("Logout", "Home")")
+            .then((data) => {
+                if (data === "Success") {
+                    postMessage("登出成功");
+                    window.location.reload();
+                }
+            });
+        });
+</script>

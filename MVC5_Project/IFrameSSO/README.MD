@@ -1,0 +1,1 @@
+# 測試Iframe在SSO的應用、父子頁面PostMessage傳遞、允許iframe嵌入的header Content-Security-Policy: frame-ancestors
