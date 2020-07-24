@@ -26,7 +26,6 @@ namespace DesignPattern.Builder
     /// 
     /// 缺點:
     /// 在擁有大量參數時，未必每個都需要使用到
-    ///
     public class Builder : IExecute
     {
         public void main()

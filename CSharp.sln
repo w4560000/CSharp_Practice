@@ -80,6 +80,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IFrameTestClient", "MVC5_Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IFrameTestServer", "MVC5_Project\IFrameSSO\IFrameTestServer\IFrameTestServer\IFrameTestServer.csproj", "{FF38DC14-B7AE-473C-9A01-3789FE4FC81A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{6DEDC779-8A13-4F39-9E92-F91EE82AECF9}"
+	ProjectSection(SolutionItems) = preProject
+		Kubernetes\Dockerfile = Kubernetes\Dockerfile
+		Kubernetes\k8sSample.yml = Kubernetes\k8sSample.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "K8S_Sample", "Kubernetes\K8S_Sample\K8S_Sample.csproj", "{751EC7F0-7C7E-473A-9F1F-E79E6B9F2AD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallAPITest", "CallAPITest\CallAPITest.csproj", "{DBE39453-F664-4A98-9F62-236ACF557AB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -154,6 +164,14 @@ Global
 		{FF38DC14-B7AE-473C-9A01-3789FE4FC81A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF38DC14-B7AE-473C-9A01-3789FE4FC81A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF38DC14-B7AE-473C-9A01-3789FE4FC81A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{751EC7F0-7C7E-473A-9F1F-E79E6B9F2AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{751EC7F0-7C7E-473A-9F1F-E79E6B9F2AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{751EC7F0-7C7E-473A-9F1F-E79E6B9F2AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{751EC7F0-7C7E-473A-9F1F-E79E6B9F2AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBE39453-F664-4A98-9F62-236ACF557AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBE39453-F664-4A98-9F62-236ACF557AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBE39453-F664-4A98-9F62-236ACF557AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBE39453-F664-4A98-9F62-236ACF557AB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -176,6 +194,7 @@ Global
 		{7E4A8D6B-3493-42D7-B442-9A5AABDD86FF} = {155EC608-2938-4834-9E24-8B5022884120}
 		{61BEAB57-E5D2-469C-BC33-598D94459783} = {7E4A8D6B-3493-42D7-B442-9A5AABDD86FF}
 		{FF38DC14-B7AE-473C-9A01-3789FE4FC81A} = {7E4A8D6B-3493-42D7-B442-9A5AABDD86FF}
+		{751EC7F0-7C7E-473A-9F1F-E79E6B9F2AD3} = {6DEDC779-8A13-4F39-9E92-F91EE82AECF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39DE7AC1-C284-40C6-80FF-58EC555767A0}

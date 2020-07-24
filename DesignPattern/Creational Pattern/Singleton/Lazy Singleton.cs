@@ -13,7 +13,7 @@ namespace DesignPattern.Lazy_Singleton
     {
         public void main()
         {
-            string a = LazySingletonSample.StaticTestString;
+            Console.WriteLine(LazySingletonSample.StaticTestString);
 
             Console.WriteLine($"process start ， {DateTime.Now}");
 

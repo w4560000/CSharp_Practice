@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8ssampledeployment
+  labels:
+    app: k8ssample
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: k8ssample
+      labels:
+        app: k8ssample
+    spec:
+      containers:
+      - name: k8ssample
+        image: k8ssample:latest
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: k8ssample
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8ssample-service
+spec:
+  selector:
+    app: k8ssample
+  ports:
+    - port: 80
+  type: NodePort

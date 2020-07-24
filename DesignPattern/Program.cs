@@ -4,7 +4,7 @@
     {
         private static void Main(string[] args)
         {
-            SwitchExecute.Command.EnterMethod();
+            SwitchExecute.Lazy_Singleton.EnterMethod();
         }
     }
 }
