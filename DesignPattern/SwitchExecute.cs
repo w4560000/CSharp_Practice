@@ -95,5 +95,11 @@
         Command,
 
         #endregion Command
+
+        #region Interpreter
+
+        Interpreter,
+
+        #endregion Interpreter
     }
 }
