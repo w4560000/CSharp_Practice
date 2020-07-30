@@ -1,4 +1,5 @@
 ﻿using System;
+using CommonClassLibary;
 
 namespace DesignPattern.Proxy
 {
@@ -24,7 +25,7 @@ namespace DesignPattern.Proxy
     /// </summary>
     public class Proxy : IExecute
     {
-        public void main()
+        public void Main()
         {
             // Create math proxy.
             var proxy = new MathProxy();

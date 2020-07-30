@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using CommonClassLibary;
 
 namespace DesignPattern.Lazy_Singleton
 {
@@ -11,7 +12,7 @@ namespace DesignPattern.Lazy_Singleton
     /// </summary>
     public class Lazy_Singleton : IExecute
     {
-        public void main()
+        public void Main()
         {
             Console.WriteLine(LazySingletonSample.StaticTestString);
 

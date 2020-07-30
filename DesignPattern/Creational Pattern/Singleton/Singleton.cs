@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using CommonClassLibary;
 
 namespace DesignPattern.Singleton
 {
@@ -16,7 +17,7 @@ namespace DesignPattern.Singleton
     /// </summary>
     public class Singleton : IExecute
     {
-        public void main()
+        public void Main()
         {
             string a = SingletonSample.StaticTestString;
 

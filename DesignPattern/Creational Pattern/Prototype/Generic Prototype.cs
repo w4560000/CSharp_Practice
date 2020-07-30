@@ -1,6 +1,8 @@
-﻿using System;
+﻿using CommonClassLibary;
+using System;
 using System.IO;
 using System.Reflection;
+using CommonClassLibary;
 
 namespace DesignPattern.Generic_Prototype
 {
@@ -12,7 +14,7 @@ namespace DesignPattern.Generic_Prototype
     /// </summary>
     public class Generic_Prototype : IExecute
     {
-        public void main()
+        public void Main()
         {
             TestClass a = new TestClass() { Id = 1 };
             TestClass shallowCopyObj = PrototypeHelper.ShallowCopy(a);

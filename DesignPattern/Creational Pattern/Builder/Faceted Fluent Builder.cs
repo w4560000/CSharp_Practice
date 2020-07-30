@@ -1,4 +1,5 @@
 ﻿using System;
+using CommonClassLibary;
 
 namespace DesignPattern.Faceted_Fluent_Builder
 {
@@ -12,7 +13,7 @@ namespace DesignPattern.Faceted_Fluent_Builder
     /// </summary>
     public class Faceted_Fluent_Builder : IExecute
     {
-        public void main()
+        public void Main()
         {
             Juice guavaJuice = new JuiceFacadeBuilder()
                             .FruitInfo.SetFruitName("芭樂").SetOrigin("台中").SetVariety("紅心的")

@@ -1,12 +1,12 @@
 ﻿using CommonClassLibary;
 
-namespace DesignPattern
+namespace Algorithm
 {
     internal class Program
     {
         private static void Main(string[] args)
         {
-            SwitchExecute.Interpreter.ToString().EnterMethod(typeof(Program).Namespace);
+            SwitchExecute.Bubble_Sort.ToString().EnterMethod(typeof(Program).Namespace);
         }
     }
 }

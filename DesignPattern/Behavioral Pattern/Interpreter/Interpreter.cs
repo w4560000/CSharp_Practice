@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CommonClassLibary;
 
 namespace DesignPattern.Interpreter
 {
@@ -20,7 +21,7 @@ namespace DesignPattern.Interpreter
     /// </summary>
     public class Interpreter : IExecute
     {
-        public void main()
+        public void Main()
         {
             // 待解譯文字
             Context context = new Context

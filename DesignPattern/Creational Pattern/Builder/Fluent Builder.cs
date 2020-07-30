@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CommonClassLibary;
 
 namespace DesignPattern.Fluent_Builder
 {
@@ -15,7 +16,7 @@ namespace DesignPattern.Fluent_Builder
     /// </summary>
     public class Fluent_Builder : IExecute
     {
-        public void main()
+        public void Main()
         {
             Juice orangeJuice = new JuiceBuilder().PrepareFruit("買橘子 -> 剝皮 -> 清洗 -> 切塊")
                                                   .Blend("將橘子放入果汁機中")

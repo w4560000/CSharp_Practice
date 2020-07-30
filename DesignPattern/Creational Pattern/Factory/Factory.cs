@@ -1,4 +1,5 @@
 ﻿using System;
+using CommonClassLibary;
 
 namespace DesignPattern.Factory
 {
@@ -30,7 +31,7 @@ namespace DesignPattern.Factory
     /// </summary>
     public class Factory : IExecute
     {
-        public void main()
+        public void Main()
         {
             Car car;
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CommonClassLibary;
 
 namespace DesignPattern.Safety_Composite
 {
@@ -19,7 +20,7 @@ namespace DesignPattern.Safety_Composite
     /// </summary>
     public class Safety_Composite : IExecute
     {
-        public void main()
+        public void Main()
         {
             ComplexGraphics complexGraphics = new ComplexGraphics("Graphics");
 

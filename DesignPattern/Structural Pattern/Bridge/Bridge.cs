@@ -1,4 +1,5 @@
 ﻿using System;
+using CommonClassLibary;
 
 namespace DesignPattern.Bridge
 {
@@ -21,7 +22,7 @@ namespace DesignPattern.Bridge
     /// </summary>
     public class Bridge : IExecute
     {
-        public void main()
+        public void Main()
         {
             ConcreteRemoter a = new ConcreteRemoter(new AppRemoter());
             ConcreteRemoter b = new ConcreteRemoter(new TraditionRemoter());

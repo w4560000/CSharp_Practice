@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CommonClassLibary;
+using System;
 using System.Collections.Generic;
+using CommonClassLibary;
 
 namespace DesignPattern.Class_Adapter
 {
@@ -23,7 +25,7 @@ namespace DesignPattern.Class_Adapter
     /// </summary>
     public class Class_Adapter : IExecute
     {
-        public void main()
+        public void Main()
         {
             Console.WriteLine("Class Adapter\n");
 

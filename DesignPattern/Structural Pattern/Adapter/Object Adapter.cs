@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CommonClassLibary;
 
 namespace DesignPattern.Object_Adapter
 {
@@ -26,7 +27,7 @@ namespace DesignPattern.Object_Adapter
     /// </summary>
     public class Object_Adapter : IExecute
     {
-        public void main()
+        public void Main()
         {
             Console.WriteLine("Object Adapter\n");
 

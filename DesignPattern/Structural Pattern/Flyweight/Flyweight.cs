@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CommonClassLibary;
 
 namespace DesignPattern.Flyweight
 {
@@ -30,7 +31,7 @@ namespace DesignPattern.Flyweight
     /// </summary>
     public class Flyweight : IExecute
     {
-        public void main()
+        public void Main()
         {
             ChessFlyweight a1 = ChessFlyweightFactory.GetChessFlyweight("黑棋");
             a1.Display(1, 1);

@@ -1,4 +1,5 @@
 ﻿using System;
+using CommonClassLibary;
 
 namespace DesignPattern.Simple_Factory
 {
@@ -29,7 +30,7 @@ namespace DesignPattern.Simple_Factory
     /// </summary>
     public class Simple_Factory : IExecute
     {
-        public void main()
+        public void Main()
         {
             Car aa;
             aa = CarFactory.CreateCar(CarEnum.audi);

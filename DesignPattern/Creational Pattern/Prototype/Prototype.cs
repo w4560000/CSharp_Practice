@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CommonClassLibary;
+using System;
+using CommonClassLibary;
 
 namespace DesignPattern.Prototype
 {
@@ -17,7 +19,7 @@ namespace DesignPattern.Prototype
     /// </summary>
     public class Prototype : IExecute
     {
-        public void main()
+        public void Main()
         {
             ConcretePrototype1 obj = new ConcretePrototype1() { Id = 1 };
             ConcretePrototype1 copyObj = (ConcretePrototype1)obj.Clone();

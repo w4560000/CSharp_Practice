@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CommonClassLibary;
 
 namespace DesignPattern.Transparency_Composite
 {
@@ -20,7 +21,7 @@ namespace DesignPattern.Transparency_Composite
     /// </summary>
     public class Transparency_Composite : IExecute
     {
-        public void main()
+        public void Main()
         {
             ComplexGraphics complexGraphics = new ComplexGraphics("Graphics");
 

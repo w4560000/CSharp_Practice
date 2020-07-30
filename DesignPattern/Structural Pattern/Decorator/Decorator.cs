@@ -1,4 +1,5 @@
 ﻿using System;
+using CommonClassLibary;
 
 namespace DesignPattern.Decorator
 {
@@ -22,7 +23,7 @@ namespace DesignPattern.Decorator
     /// </summary>
     public class Decorator : IExecute
     {
-        public void main()
+        public void Main()
         {
             Hamburger baconHamburger = new BaconHamburger();
             baconHamburger = new Egg(baconHamburger);

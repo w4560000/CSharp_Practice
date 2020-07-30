@@ -1,4 +1,5 @@
 ﻿using System;
+using CommonClassLibary;
 
 namespace DesignPattern.Abstract_Factory
 {
@@ -26,7 +27,7 @@ namespace DesignPattern.Abstract_Factory
     /// </summary>
     public class Abstract_Factory : IExecute
     {
-        public void main()
+        public void Main()
         {
             ICarManufacture audi = new CarFactory().CreateAudiCar();
             audi.ManufactureEngine();

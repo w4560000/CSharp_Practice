@@ -1,4 +1,5 @@
 ﻿using System;
+using CommonClassLibary;
 
 namespace DesignPattern.Chain_of_Responsibility
 {
@@ -19,7 +20,7 @@ namespace DesignPattern.Chain_of_Responsibility
     /// </summary>
     public class Chain_of_Responsibility : IExecute
     {
-        public void main()
+        public void Main()
         {
             // 管理者初始化
             Manager manager = new Manager("阿福"); // 經理

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CommonClassLibary;
 
 namespace DesignPattern.Command
 {
@@ -18,7 +19,7 @@ namespace DesignPattern.Command
     /// </summary>
     public class Command : IExecute
     {
-        public void main()
+        public void Main()
         {
             // 初始化各個物件
             Invoker invoker = new Invoker(); // 發命令物件

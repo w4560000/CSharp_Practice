@@ -1,4 +1,5 @@
 ﻿using System;
+using CommonClassLibary;
 
 namespace DesignPattern.Facade
 {
@@ -21,7 +22,7 @@ namespace DesignPattern.Facade
     /// </summary>
     public class Facade : IExecute
     {
-        public void main()
+        public void Main()
         {
             RestaurantFacade facade = new RestaurantFacade();
             facade.GetMondayInfo();
