@@ -101,5 +101,11 @@
         Interpreter,
 
         #endregion Interpreter
+
+        #region Iterator
+
+        Iterator
+
+        #endregion Iterator
     }
 }
