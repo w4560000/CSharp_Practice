@@ -104,8 +104,14 @@
 
         #region Iterator
 
-        Iterator
+        Iterator,
 
         #endregion Iterator
+
+        #region Mediator
+
+        Mediator,
+
+        #endregion Mediator
     }
 }
