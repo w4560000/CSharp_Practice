@@ -113,5 +113,12 @@
         Mediator,
 
         #endregion Mediator
+
+        #region Memento
+
+        Memento
+
+        #endregion Memento
+
     }
 }
