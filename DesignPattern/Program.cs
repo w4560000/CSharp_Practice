@@ -6,7 +6,7 @@ namespace DesignPattern
     {
         private static void Main(string[] args)
         {
-            SwitchExecute.Memento.ToString().EnterMethod(typeof(Program).Namespace);
+            SwitchExecute.Observer.ToString().EnterMethod(typeof(Program).Namespace);
         }
     }
 }

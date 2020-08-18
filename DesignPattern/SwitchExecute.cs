@@ -116,9 +116,14 @@
 
         #region Memento
 
-        Memento
+        Memento,
 
         #endregion Memento
 
+        #region Observer
+
+        Observer,
+
+        #endregion Observer
     }
 }
