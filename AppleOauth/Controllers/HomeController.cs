@@ -22,25 +22,23 @@ namespace AppleOauth.Controllers
             return View();
         }
 
-        public ActionResult EecryptAuthKey()
+        public ActionResult EecryptAuthKey(string identityToken)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            dynamic a;
+            bool result = false;
             using (HttpClient client = new HttpClient())
             {
                 HttpResponseMessage httpResponseMessage = client.GetAsync("https://appleid.apple.com/auth/keys").GetAwaiter().GetResult();
-                string response = httpResponseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                a = JsonConvert.DeserializeObject<dynamic>(response);
+                string responseJson = httpResponseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var response = JsonConvert.DeserializeObject<dynamic>(responseJson);
 
-                var b = new JsonWebKey(JsonConvert.SerializeObject(a.keys[0]));
+                var key1 = new JsonWebKey(JsonConvert.SerializeObject(response.keys[0]));
+                var key2 = new JsonWebKey(JsonConvert.SerializeObject(response.keys[1]));
 
-                // identityToken
-                string token = "jwt";
-
-                bool ww = Verify(token, b.N, b.E);
+                result = Verify(identityToken, key1.N, key1.E) || Verify(identityToken, key2.N, key2.E);
             }
 
-            return Json(new { result = a.keys[0] }, JsonRequestBehavior.AllowGet);
+            return Json(new { result }, JsonRequestBehavior.AllowGet);
         }
 
         public bool Verify(string accessToken, string n, string e)
@@ -56,8 +54,6 @@ namespace AppleOauth.Controllers
 
             SHA256CryptoServiceProvider sha256 = new SHA256CryptoServiceProvider();
             byte[] hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(parts[0] + "." + parts[1]));
-
-            var c = new JwtSecurityToken(jwtEncodedString: accessToken);
 
 
             RSAPKCS1SignatureDeformatter rsaDeformatter = new RSAPKCS1SignatureDeformatter(provider);
@@ -201,7 +197,7 @@ namespace AppleOauth.Controllers
 
             var a = Post("https://appleid.apple.com/auth/token", authToken);
 
-            return Json(new { result = a }, JsonRequestBehavior.AllowGet);
+            return Json(new { result = a.access_token }, JsonRequestBehavior.AllowGet);
         }
 
         public static string Encode(string privateKey)
@@ -240,8 +236,6 @@ namespace AppleOauth.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                //string response = client.GetAsync(url).GetAwaiter().GetResult().Content.ReadAsStringAsync().GetAwaiter().GetResult();
-
                 Dictionary<string, string> formDataDictionary = new Dictionary<string, string>()
                 {
                     {nameof(param.client_id), param.client_id },
