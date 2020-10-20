@@ -1,0 +1,16 @@
+﻿using System;
+
+namespace EventWaitHandleAPI
+{
+    internal class Program
+    {
+        private static void Main(string[] args)
+        {
+            // 測試 AutoResetEvent
+            //new AutoResetEventTest().Run();
+
+            new ManualResetEventTest().Run();
+            Console.ReadKey();
+        }
+    }
+}
