@@ -9,7 +9,9 @@ namespace EventWaitHandleAPI
             // 測試 AutoResetEvent
             //new AutoResetEventTest().Run();
 
+            // 測試 ManualResetEvent
             new ManualResetEventTest().Run();
+
             Console.ReadKey();
         }
     }
