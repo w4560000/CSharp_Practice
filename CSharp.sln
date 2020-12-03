@@ -98,6 +98,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleOauth", "AppleOauth\Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventWaitHandleAPI", "EventWaitHandleAPI\EventWaitHandleAPI.csproj", "{47D444F5-C824-4124-B58E-55D1222DB914}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTable_Sample", "DataTable_Sample\DataTable_Sample.csproj", "{BE9BE583-C1E3-47D3-AD55-05CF6050E9E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -196,6 +198,10 @@ Global
 		{47D444F5-C824-4124-B58E-55D1222DB914}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47D444F5-C824-4124-B58E-55D1222DB914}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47D444F5-C824-4124-B58E-55D1222DB914}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE9BE583-C1E3-47D3-AD55-05CF6050E9E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE9BE583-C1E3-47D3-AD55-05CF6050E9E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE9BE583-C1E3-47D3-AD55-05CF6050E9E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE9BE583-C1E3-47D3-AD55-05CF6050E9E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -221,6 +227,7 @@ Global
 		{751EC7F0-7C7E-473A-9F1F-E79E6B9F2AD3} = {6DEDC779-8A13-4F39-9E92-F91EE82AECF9}
 		{8B9592D4-B04D-4705-B92E-5E3769C69A78} = {155EC608-2938-4834-9E24-8B5022884120}
 		{47D444F5-C824-4124-B58E-55D1222DB914} = {9B70E716-B1FC-4D2E-8536-98EE63699480}
+		{BE9BE583-C1E3-47D3-AD55-05CF6050E9E5} = {D2E8B67C-75DC-4B74-B3D8-1A39B88BDBD2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39DE7AC1-C284-40C6-80FF-58EC555767A0}
