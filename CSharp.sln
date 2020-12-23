@@ -88,8 +88,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "K8S_Sample", "Kubernetes\K8S_Sample\K8S_Sample.csproj", "{751EC7F0-7C7E-473A-9F1F-E79E6B9F2AD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallAPITest", "CallAPITest\CallAPITest.csproj", "{DBE39453-F664-4A98-9F62-236ACF557AB7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithm", "Algorithm\Algorithm.csproj", "{606891D9-38E9-4A62-9290-053D3B902F08}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonClassLibary", "CommonClassLibary\CommonClassLibary.csproj", "{9391418C-2ECD-4297-8204-EEBCEA3C8F9B}"
@@ -99,6 +97,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventWaitHandleAPI", "EventWaitHandleAPI\EventWaitHandleAPI.csproj", "{47D444F5-C824-4124-B58E-55D1222DB914}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTable_Sample", "DataTable_Sample\DataTable_Sample.csproj", "{BE9BE583-C1E3-47D3-AD55-05CF6050E9E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipelines", "Pipelines", "{80F428E1-50F1-4C44-BB28-95DD1D9195D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NamedPipeServerStream", "NamedPipeServerStream", "{79549F42-2FF9-4EC2-A4CB-756AD5930BD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NamedPipeServerStream_Server", "NamedPipeServerStream_Server\NamedPipeServerStream_Server.csproj", "{1BB5049E-7923-4A63-8C14-D79D3AE347B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NamedPipeServerStream_Client", "NamedPipeServerStream_Client\NamedPipeServerStream_Client.csproj", "{FD543C3C-4548-4B18-8CF7-547147788422}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3BFC60CA-129F-4320-906A-F1DDF468EB6E}"
+	ProjectSection(SolutionItems) = preProject
+		.filenesting.json = .filenesting.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -178,10 +189,6 @@ Global
 		{751EC7F0-7C7E-473A-9F1F-E79E6B9F2AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{751EC7F0-7C7E-473A-9F1F-E79E6B9F2AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{751EC7F0-7C7E-473A-9F1F-E79E6B9F2AD3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DBE39453-F664-4A98-9F62-236ACF557AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DBE39453-F664-4A98-9F62-236ACF557AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DBE39453-F664-4A98-9F62-236ACF557AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DBE39453-F664-4A98-9F62-236ACF557AB7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{606891D9-38E9-4A62-9290-053D3B902F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{606891D9-38E9-4A62-9290-053D3B902F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{606891D9-38E9-4A62-9290-053D3B902F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -202,6 +209,14 @@ Global
 		{BE9BE583-C1E3-47D3-AD55-05CF6050E9E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE9BE583-C1E3-47D3-AD55-05CF6050E9E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE9BE583-C1E3-47D3-AD55-05CF6050E9E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BB5049E-7923-4A63-8C14-D79D3AE347B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BB5049E-7923-4A63-8C14-D79D3AE347B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BB5049E-7923-4A63-8C14-D79D3AE347B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BB5049E-7923-4A63-8C14-D79D3AE347B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD543C3C-4548-4B18-8CF7-547147788422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD543C3C-4548-4B18-8CF7-547147788422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD543C3C-4548-4B18-8CF7-547147788422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD543C3C-4548-4B18-8CF7-547147788422}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -228,6 +243,9 @@ Global
 		{8B9592D4-B04D-4705-B92E-5E3769C69A78} = {155EC608-2938-4834-9E24-8B5022884120}
 		{47D444F5-C824-4124-B58E-55D1222DB914} = {9B70E716-B1FC-4D2E-8536-98EE63699480}
 		{BE9BE583-C1E3-47D3-AD55-05CF6050E9E5} = {D2E8B67C-75DC-4B74-B3D8-1A39B88BDBD2}
+		{79549F42-2FF9-4EC2-A4CB-756AD5930BD3} = {80F428E1-50F1-4C44-BB28-95DD1D9195D0}
+		{1BB5049E-7923-4A63-8C14-D79D3AE347B4} = {79549F42-2FF9-4EC2-A4CB-756AD5930BD3}
+		{FD543C3C-4548-4B18-8CF7-547147788422} = {79549F42-2FF9-4EC2-A4CB-756AD5930BD3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39DE7AC1-C284-40C6-80FF-58EC555767A0}
