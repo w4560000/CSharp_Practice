@@ -125,8 +125,8 @@ namespace CancellationTokenSourceAPI
                 cancellationTokenSource.Token.Register(() => Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms Task Canceled2"));
                 cancellationTokenSource.Token.Register(() => Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms Task Canceled3"));
                 cancellationTokenSource.Token.Register(() => Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms Task Canceled4"));
-                cancellationTokenSource.Token.Register(() => Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms Task Canceled5"));
                 cancellationTokenSource.Token.Register(() => throw new Exception($"{stopwatch.ElapsedMilliseconds} ms Task Canceled"));
+                cancellationTokenSource.Token.Register(() => Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms Task Canceled5"));
 
                 Task.Run(() =>
                 {
@@ -139,11 +139,13 @@ namespace CancellationTokenSourceAPI
                 }, cancellationTokenSource.Token);
 
                 Thread.Sleep(5000);
-                cancellationTokenSource.Cancel();
-                //cancellationTokenSource.Cancel(true);
+                Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms 執行 Task Cancel(true)");
+                //cancellationTokenSource.Cancel();
+                cancellationTokenSource.Cancel(true);
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"發生異常, Error:{ex.Message}");
             }
         }
 
@@ -201,10 +203,10 @@ namespace CancellationTokenSourceAPI
                 }
             }, cancellationTokenSource.Token);
 
-            cancellationTokenSource.Token.Register(() => Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms Task Canceled"));
+            cancellationTokenSource.Token.Register(() => Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms Task Register"));
 
-            // 2秒後Cancel掉Task
-            cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(2));
+            // 5秒後Cancel掉Task
+            cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(5));
 
             // 3秒後dispose掉CancellationTokenSource，清除掉CancelAfter的timer和Register動作
             Thread.Sleep(3000);
