@@ -1,14 +1,15 @@
 ﻿using CommonClassLibary;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using CommonClassLibary;
 
 namespace DesignPattern.Generic_Prototype
 {
     /// <summary>
     /// Prototype泛型改良版
-    /// 
+    ///
     /// 以泛型解決Prototype的缺點
     /// 並把Clone定義分為深複製與淺複製以免誤用
     /// </summary>
@@ -16,13 +17,15 @@ namespace DesignPattern.Generic_Prototype
     {
         public void Main()
         {
-            TestClass a = new TestClass() { Id = 1 };
+            TestClass a = new TestClass() { Id = 1, IdList = new List<int>() { 1, 2, 3 } };
             TestClass shallowCopyObj = PrototypeHelper.ShallowCopy(a);
             TestClass deepCopyObj = PrototypeHelper.DeepCopy(a);
 
-            a.Dump();
-            shallowCopyObj.Dump();
-            deepCopyObj.Dump();
+            a.Id = 10;
+            a.IdList.Clear();
+            Console.WriteLine($"a={JsonConvert.SerializeObject(a)}");
+            Console.WriteLine($"shallowCopyObj={JsonConvert.SerializeObject(shallowCopyObj)}");
+            Console.WriteLine($"deepCopyObj={JsonConvert.SerializeObject(deepCopyObj)}");
         }
     }
 
@@ -30,6 +33,7 @@ namespace DesignPattern.Generic_Prototype
     internal class TestClass
     {
         public int Id { get; set; }
+        public List<int> IdList { get; set; }
     }
 
     public static class PrototypeHelper
