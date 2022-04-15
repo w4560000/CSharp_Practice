@@ -21,8 +21,8 @@ namespace EventWaitHandleAPI
         public void Run()
         {
             //AutoResetEvent_State_false_Test();
-            //AutoResetEvent_State_true_Test();
-            AutoResetEvent_MutlipleThread_Test();
+            AutoResetEvent_State_true_Test();
+            //AutoResetEvent_MutlipleThread_Test();
         }
 
         private static void AutoResetEvent_State_false_Test()

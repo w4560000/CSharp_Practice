@@ -8,7 +8,7 @@ namespace CancellationTokenSourceAPI
 {
     internal class Program
     {
-        private enum switchTest
+        private enum SwitchTest
         {
             Construct,
             CreateLinkedTokenSource,
@@ -20,7 +20,7 @@ namespace CancellationTokenSourceAPI
 
         private static void Main(string[] args)
         {
-            ProgramExtension.EnterMethod(Type.GetType(MethodBase.GetCurrentMethod().DeclaringType.FullName), switchTest.Dispose);
+            ProgramExtension.EnterMethod(Type.GetType(MethodBase.GetCurrentMethod().DeclaringType.FullName), SwitchTest.Dispose);
         }
 
         /// <summary>
