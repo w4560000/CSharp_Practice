@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EventWaitHandleAPI
+namespace EventWaitHandleSample
 {
     public class AutoResetEventTest
     {

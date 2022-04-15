@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EventWaitHandleAPI
+namespace EventWaitHandleSample
 {
     internal class Program
     {

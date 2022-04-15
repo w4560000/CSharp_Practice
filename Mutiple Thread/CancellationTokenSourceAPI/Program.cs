@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CancellationTokenSourceAPI
+namespace CancellationTokenSourceSample
 {
     internal class Program
     {
@@ -79,7 +79,7 @@ namespace CancellationTokenSourceAPI
             stopwatch.Start();
 
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-            CancellationToken a = new CancellationToken();
+
             Task.Run(() =>
             {
                 while (true)
