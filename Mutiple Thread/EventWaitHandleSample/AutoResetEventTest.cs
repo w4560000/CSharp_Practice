@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace EventWaitHandleSample
 {
+    /// <summary>
+    /// MSDN https://docs.microsoft.com/zh-tw/dotnet/api/system.threading.AutoResetEvent
+    /// </summary>
     public class AutoResetEventTest
     {
         /// <summary>

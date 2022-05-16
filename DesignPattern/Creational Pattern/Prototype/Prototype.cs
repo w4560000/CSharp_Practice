@@ -1,6 +1,5 @@
 ﻿using CommonClassLibary;
 using System;
-using CommonClassLibary;
 
 namespace DesignPattern.Prototype
 {

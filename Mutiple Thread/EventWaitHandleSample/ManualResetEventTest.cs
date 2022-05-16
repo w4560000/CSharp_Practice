@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace EventWaitHandleSample
 {
+    /// <summary>
+    /// MSDN https://docs.microsoft.com/zh-tw/dotnet/api/system.threading.ManualResetEvent
+    /// </summary>
     public class ManualResetEventTest
     {
         /// <summary>

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace CancellationTokenSourceSample
 {
+    /// <summary>
+    /// MSDN https://docs.microsoft.com/zh-tw/dotnet/api/system.threading.CancellationTokenSource
+    /// </summary>
     internal class Program
     {
         private enum SwitchTest

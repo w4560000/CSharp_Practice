@@ -4,7 +4,7 @@ namespace EventWaitHandleSample
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        static void Main(string[] args)
         {
             // 測試 AutoResetEvent
             new AutoResetEventTest().Run();
