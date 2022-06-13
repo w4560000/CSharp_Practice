@@ -6,7 +6,7 @@ namespace TaskAPI
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             Action action1 = () => Console.WriteLine($"Task={Task.CurrentId}, Thread={Thread.CurrentThread.ManagedThreadId}");
             #region new Task

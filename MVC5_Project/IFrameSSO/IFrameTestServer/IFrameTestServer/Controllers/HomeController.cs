@@ -21,7 +21,7 @@ namespace IFrameTestServer.Controllers
                     ViewBag.testData = HttpUtility.ParseQueryString(ticket.UserData)["TestData"];
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 FormsAuthentication.SignOut();
             }

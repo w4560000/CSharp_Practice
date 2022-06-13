@@ -1,7 +1,6 @@
 ﻿using CommonClassLibary;
 using System;
 using System.Collections.Generic;
-using CommonClassLibary;
 
 namespace DesignPattern.Class_Adapter
 {

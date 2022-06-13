@@ -6,6 +6,8 @@ namespace SemaphoreSample
     /// <summary>
     /// MSDN https://docs.microsoft.com/zh-tw/dotnet/api/system.threading.semaphore
     /// 參考文章 https://www.uj5u.com/net/227011.html
+    /// 
+    /// Semaphore 可以透過 name 來跨應用程式取得 Semaphore 實體，SemaphoreSlim 則只限於單一應用程式
     /// </summary>
     internal class Program
     {
@@ -42,28 +44,27 @@ namespace SemaphoreSample
         //  >>>>>編號7進洗手間：2022/5/16 下午 02:12:38
         //  編號9出洗手間：2022/5/16 下午 02:12:40
         //  編號7出洗手間：2022/5/16 下午 02:12:40
-        static Semaphore sema = new Semaphore(5, 5);
+        static Semaphore semaphore = new Semaphore(5, 5);
 
         static void Main(string[] args)
         {
             for (int i = 1; i <= 12; i++)
             {
-                Thread td = new Thread(new ParameterizedThreadStart(testFun));
-                td.Name = string.Format("編號{0}", i.ToString());
-                td.Start(td.Name);
+                Thread td = new Thread(new ParameterizedThreadStart(TestFun));
+                td.Start($"編號{i}");
             }
             Console.ReadKey();
         }
-        public static void testFun(object obj)
+        public static void TestFun(object obj)
         {
             // 進洗手間 消耗一個廁所
-            sema.WaitOne();
+            semaphore.WaitOne();
             Console.WriteLine(">>>>>" + obj.ToString() + "進洗手間：" + DateTime.Now.ToString());
             Thread.Sleep(2000);
 
             // 出洗手間 空出一個廁所
             Console.WriteLine(obj.ToString() + "出洗手間：" + DateTime.Now.ToString());
-            sema.Release();
+            semaphore.Release();
         }
     }
 }
