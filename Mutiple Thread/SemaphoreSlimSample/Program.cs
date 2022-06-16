@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace SemaphoreSlimSample
 {
     /// <summary>
-    /// SemaphoreSlim 提供了非同步的 WaitAsync 方法
+    /// SemaphoreSlim 提供了非同步的 WaitAsync 方法、CancellationToken 參數
     /// </summary>
     internal class Program
     {
@@ -45,27 +45,38 @@ namespace SemaphoreSlimSample
 
         private static void Main(string[] args)
         {
+            // 可傳入CancellationToken，當CancellationToken 狀態為取消時，semaphoreSlim wait時 會拋出異常
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            cancellationTokenSource.Token.Register(() => Console.WriteLine($"Task Canceled"));
             for (int i = 1; i <= 12; i++)
             {
                 int index = i;
                 Task.Run(async () =>
                 {
-                    await TestFun($"編號{index}");
+                    await TestFun($"編號{index}", cancellationTokenSource.Token);
                 });
             }
+
             Console.ReadKey();
         }
 
-        public static async Task TestFun(string name)
+        public static async Task TestFun(string name, CancellationToken cancellationToken)
         {
-            // 進洗手間 消耗一個廁所
-            await semaphoreSlim.WaitAsync();
-            Console.WriteLine(">>>>>" + name + "進洗手間：" + DateTime.Now.ToString());
-            Thread.Sleep(2000);
+            try
+            {
+                // 進洗手間 消耗一個廁所
+                await semaphoreSlim.WaitAsync(cancellationToken);
+                Console.WriteLine(">>>>>" + name + "進洗手間：" + DateTime.Now.ToString());
+                Thread.Sleep(3000);
 
-            // 出洗手間 空出一個廁所
-            Console.WriteLine(name + "出洗手間：" + DateTime.Now.ToString());
-            semaphoreSlim.Release();
+                // 出洗手間 空出一個廁所
+                Console.WriteLine(name + "出洗手間：" + DateTime.Now.ToString());
+                semaphoreSlim.Release();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(name + ex.Message);
+            }
         }
     }
 }
