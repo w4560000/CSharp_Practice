@@ -2,8 +2,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EventWaitHandleAPI
+namespace EventWaitHandleSample
 {
+    /// <summary>
+    /// MSDN https://docs.microsoft.com/zh-tw/dotnet/api/system.threading.AutoResetEvent
+    /// </summary>
     public class AutoResetEventTest
     {
         /// <summary>
@@ -21,8 +24,8 @@ namespace EventWaitHandleAPI
         public void Run()
         {
             //AutoResetEvent_State_false_Test();
-            //AutoResetEvent_State_true_Test();
-            AutoResetEvent_MutlipleThread_Test();
+            AutoResetEvent_State_true_Test();
+            //AutoResetEvent_MutlipleThread_Test();
         }
 
         private static void AutoResetEvent_State_false_Test()

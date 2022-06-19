@@ -5,11 +5,14 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CancellationTokenSourceAPI
+namespace CancellationTokenSourceSample
 {
+    /// <summary>
+    /// MSDN https://docs.microsoft.com/zh-tw/dotnet/api/system.threading.CancellationTokenSource
+    /// </summary>
     internal class Program
     {
-        private enum switchTest
+        private enum SwitchTest
         {
             Construct,
             CreateLinkedTokenSource,
@@ -23,7 +26,7 @@ namespace CancellationTokenSourceAPI
 
         private static void Main(string[] args)
         {
-            ProgramExtension.EnterMethod(Type.GetType(MethodBase.GetCurrentMethod().DeclaringType.FullName), switchTest.Dispose);
+            ProgramExtension.EnterMethod(Type.GetType(MethodBase.GetCurrentMethod().DeclaringType.FullName), SwitchTest.Dispose);
         }
 
         /// <summary>
@@ -79,7 +82,7 @@ namespace CancellationTokenSourceAPI
             stopwatch.Start();
 
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-            CancellationToken a = new CancellationToken();
+
             Task.Run(() =>
             {
                 while (true)

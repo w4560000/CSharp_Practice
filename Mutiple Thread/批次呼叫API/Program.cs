@@ -9,7 +9,7 @@ namespace ConsoleApp1
 {
     internal class Program
     {
-        private static async Task Main(string[] args)
+        private static void Main(string[] args)
         {
             string url = "http://localhost:2000/Account/Test";
 
