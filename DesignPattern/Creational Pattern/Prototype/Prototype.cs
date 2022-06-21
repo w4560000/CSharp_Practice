@@ -1,5 +1,7 @@
 ﻿using CommonClassLibary;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace DesignPattern.Prototype
 {
@@ -20,11 +22,13 @@ namespace DesignPattern.Prototype
     {
         public void Main()
         {
-            ConcretePrototype1 obj = new ConcretePrototype1() { Id = 1 };
+            ConcretePrototype1 obj = new ConcretePrototype1() { Id = 1, IdList = new List<int>() { 1, 2, 3 } };
             ConcretePrototype1 copyObj = (ConcretePrototype1)obj.Clone();
 
-            obj.Dump();
-            copyObj.Dump();
+            obj.Id = 10;
+            obj.IdList.Clear();
+            Console.WriteLine($"obj={JsonConvert.SerializeObject(obj)}");
+            Console.WriteLine($"copyObj={JsonConvert.SerializeObject(copyObj)}");
         }
     }
 
@@ -43,6 +47,8 @@ namespace DesignPattern.Prototype
     public class ConcretePrototype1 : PrototypeBase
     {
         public int Id { get; set; }
+
+        public List<int> IdList { get; set; }
 
         public override object Clone()
         {
