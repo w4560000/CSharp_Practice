@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace EventWaitHandleSample
 {
@@ -7,11 +8,13 @@ namespace EventWaitHandleSample
         static void Main(string[] args)
         {
             // 測試 AutoResetEvent
-            new AutoResetEventTest().Run();
+            //new AutoResetEventTest().Run();
 
             // 測試 ManualResetEvent
             //new ManualResetEventTest().Run();
 
+            // 測試 ManualResetEventSlim
+            new ManualResetEventSlimTest().Run();
             Console.ReadKey();
         }
     }
