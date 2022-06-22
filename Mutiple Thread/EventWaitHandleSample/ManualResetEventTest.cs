@@ -6,16 +6,18 @@ namespace EventWaitHandleSample
 {
     /// <summary>
     /// MSDN https://docs.microsoft.com/zh-tw/dotnet/api/system.threading.ManualResetEvent
+    /// 
+    /// WaitOne()後 門不會自動上鎖，直到重新執行 Reset() 後才上鎖
     /// </summary>
     public class ManualResetEventTest
     {
         /// <summary>
         /// ManualResetEvent 建構子的 ture or false -> 是否有傳入Set的信號進去
-        ///                        true  -> 代表現在是 Set()   狀態，  WaitOne() 無效果
-        ///                        false -> 代表現在是 Reset() 狀態，  WaitOne() 有效果
+        ///                        true  -> 代表現在是 Set()   狀態，  有信號 => 門敞開 其他 Thread 執行 WaitOne() 無效果
+        ///                        false -> 代表現在是 Reset() 狀態，  無信號 => 門上鎖 其他 Thread 執行 WaitOne() 有效果
         ///
-        /// ManualResetEvent Set   -> 設定 WaitOne() 無效果，門永遠敞開，直到設定Reset之後門才關上
-        ///                  Reset -> 設定 WaitOne() 有效果
+        /// ManualResetEvent WaitOne() => 若當下有信號 則無阻塞效果
+        ///                               若當下無信號 則阻塞當前 Thread
         /// </summary>
         private static ManualResetEvent _ManualResetEvent_initialState_false = new ManualResetEvent(false);
 

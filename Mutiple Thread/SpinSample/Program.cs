@@ -12,7 +12,10 @@ namespace SpinSample
 
         private static void Main(string[] args)
         {
-            new SpinWaitSample().Run();
+            //new SpinWaitSample().Run();
+
+            new SpinLockSample().Run();
+
             Console.ReadLine();
         }
     }

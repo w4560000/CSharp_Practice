@@ -6,16 +6,18 @@ namespace EventWaitHandleSample
 {
     /// <summary>
     /// MSDN https://docs.microsoft.com/zh-tw/dotnet/api/system.threading.AutoResetEvent
+    /// 
+    /// 任一 Thread 通過 WaitOne()後，門自動上鎖 (一次只允許一個 Thread 執行)
     /// </summary>
     public class AutoResetEventTest
     {
         /// <summary>
         /// AutoResetEvent 建構子的 ture or false -> 是否有傳入Set的信號進去
-        ///                        true  -> 代表現在是 Set()   狀態，  WaitOne() 無效果
-        ///                        false -> 代表現在是 Reset() 狀態，  WaitOne() 有效果
+        ///                        true  -> 代表現在是 Set()   狀態，  有信號 => 門敞開 其他 Thread 執行 WaitOne() 無效果
+        ///                        false -> 代表現在是 Reset() 狀態，  無信號 => 門上鎖 其他 Thread 執行 WaitOne() 有效果
         ///
-        /// AutoResetEvent Set   -> 設定 WaitOne() 無效果，但只限一次 換句話說 只開一次門，WaitOne一次過後 門又關上
-        ///                Reset -> 設定 WaitOne() 有效果
+        /// AutoResetEvent WaitOne() => 若當下有信號 則無阻塞效果
+        ///                             若當下無信號 則阻塞當前 Thread，且任一 Thread WaitOne()後，自動賦予狀態(門上鎖)
         /// </summary>
         private static AutoResetEvent _AutoResetEvent_initialState_false = new AutoResetEvent(false);
 

@@ -7,6 +7,7 @@ namespace SpinSample
     /// <summary>
     /// SpinWait MSDN: https://docs.microsoft.com/zh-tw/dotnet/standard/threading/spinwait?redirectedfrom=MSDN
     /// SourceCode: https://blog.csdn.net/xxdddail/article/details/16982351
+    /// 博客園文章SpinWait說明: https://www.cnblogs.com/majiang/p/7889584.html
     /// 
     /// 當 Thread 需要空轉 等待其他 Thread 處理完後 再進行處理時，我們常常會使用 Thread.Sleep()
     /// 但 Thread.Sleep 是先釋放當前 Thread，讓它去處理其他程序，等時間到再喚醒

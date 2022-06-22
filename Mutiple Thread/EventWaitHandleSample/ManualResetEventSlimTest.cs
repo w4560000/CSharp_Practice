@@ -29,7 +29,7 @@ namespace EventWaitHandleSample
 
         /// <summary>
         /// 測試 ManualResetEventSlim 在多執行緒阻塞的情況
-        /// Set() -> 門永遠敞開，也就是說 若兩條執行緒都阻塞，Set 執行一次 兩條都會通，直到設定Reset後 的 WaitOne 才會阻塞
+        /// Set() -> 門永遠敞開，也就是說 若兩條執行緒都阻塞，Set 執行一次 兩條都會通，直到設定Reset後 的 Wait 才會阻塞
         /// </summary>
         private static void ManualResetEventSlim_MutlipleThread_Test()
         {
@@ -46,11 +46,18 @@ namespace EventWaitHandleSample
             _ManualResetEventSlim_initialState_false.Set();
 
             Thread.Sleep(1000);
-            Console.WriteLine("觀察ManualResetEventSlim Set 設定一次 多條執行緒的WaitOne都會被允許通過");
+            Console.WriteLine("觀察ManualResetEventSlim Set 設定一次 多條執行緒的Wait都會被允許通過");
         }
 
         /// <summary>
         /// 測試 ManualResetEventSlim SpinCount
+        /// SpinCount 預設為 10
+        /// 
+        /// 查看SourceCode 發現 SpinCount 不能 < 0 & > 2047
+        /// 且在單核心時 SpinCount 為1
+        /// 
+        /// 但並非是 SpinCount 次數內 每次都執行 SpinWait，還有一些算法 呼叫 Thread.Yield()、Thread.Sleep(1)、Thread.Sleep(0)
+        /// https://referencesource.microsoft.com/#mscorlib/system/threading/ManualResetEventSlim.cs,542
         /// </summary>
         private static void ManualResetEventSlim_SpinCount_Test()
         {
