@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace RabbitmqTest
+namespace RabbitMQProducer
 {
     /// <summary>
     /// source code form https://www.cnblogs.com/Vincent-yuan/p/10934099.html
@@ -11,7 +11,8 @@ namespace RabbitmqTest
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("program start!");
+            Console.WriteLine(" Start RabbitMQProducer");
+            Console.WriteLine(" Type Message...");
 
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var connection = factory.CreateConnection()) 
@@ -34,7 +35,7 @@ namespace RabbitmqTest
                                                              routingKey: "hello",
                                                              basicProperties: null,
                                                              body: body);
-                    Console.WriteLine(" [x] Sent {0}", message);
+                    Console.WriteLine(" Sent {0}", message);
                 }
             }
         }

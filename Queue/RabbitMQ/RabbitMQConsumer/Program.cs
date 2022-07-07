@@ -3,7 +3,7 @@ using RabbitMQ.Client.Events;
 using System;
 using System.Text;
 
-namespace RabbitmqClient
+namespace RabbitMQConsumer
 {
     /// <summary>
     /// source code form https://www.cnblogs.com/Vincent-yuan/p/10934099.html
@@ -12,6 +12,8 @@ namespace RabbitmqClient
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(" Start RabbitMQConsumer");
+
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
@@ -27,7 +29,7 @@ namespace RabbitmqClient
                 {
                     var body = ea.Body;
                     var message = Encoding.UTF8.GetString(body.Span);
-                    Console.WriteLine(" [x] Received {0}", message);
+                    Console.WriteLine($" Received {message}");
                 };
                 channel.BasicConsume(queue: "hello",
                                      autoAck: true,
