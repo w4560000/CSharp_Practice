@@ -131,9 +131,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQProducer", "Queue\R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQConsumer", "Queue\RabbitMQ\RabbitMQConsumer\RabbitMQConsumer.csproj", "{6A566E20-1BB9-48B4-B4FF-403A2BB53A4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaConsumer", "Queue\Kafka\KafkaConsumer\KafkaConsumer.csproj", "{344C24DD-8567-4CA3-AF0A-B1CF1B77D881}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaConsumer", "Queue\Kafka\KafkaConsumer\KafkaConsumer.csproj", "{344C24DD-8567-4CA3-AF0A-B1CF1B77D881}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaProducer", "Queue\Kafka\KafkaProducer\KafkaProducer.csproj", "{480E8BAB-C96F-4996-8F1C-BB1371964FF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaProducer", "Queue\Kafka\KafkaProducer\KafkaProducer.csproj", "{480E8BAB-C96F-4996-8F1C-BB1371964FF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterlockedSample", "Mutiple Thread\InterlockedSample\InterlockedSample.csproj", "{FEC5433B-6BBD-48EF-A969-8D73DD9C727A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -265,6 +267,10 @@ Global
 		{480E8BAB-C96F-4996-8F1C-BB1371964FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{480E8BAB-C96F-4996-8F1C-BB1371964FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{480E8BAB-C96F-4996-8F1C-BB1371964FF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEC5433B-6BBD-48EF-A969-8D73DD9C727A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEC5433B-6BBD-48EF-A969-8D73DD9C727A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEC5433B-6BBD-48EF-A969-8D73DD9C727A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEC5433B-6BBD-48EF-A969-8D73DD9C727A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -303,6 +309,7 @@ Global
 		{6A566E20-1BB9-48B4-B4FF-403A2BB53A4D} = {09FF7D2D-47B2-42B4-89BC-335AFEFEEC0C}
 		{344C24DD-8567-4CA3-AF0A-B1CF1B77D881} = {0A430651-75E3-4DFC-8EFD-8F8B0EE57926}
 		{480E8BAB-C96F-4996-8F1C-BB1371964FF9} = {0A430651-75E3-4DFC-8EFD-8F8B0EE57926}
+		{FEC5433B-6BBD-48EF-A969-8D73DD9C727A} = {9B70E716-B1FC-4D2E-8536-98EE63699480}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39DE7AC1-C284-40C6-80FF-58EC555767A0}
