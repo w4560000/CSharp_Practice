@@ -135,7 +135,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaConsumer", "Queue\Kafk
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaProducer", "Queue\Kafka\KafkaProducer\KafkaProducer.csproj", "{480E8BAB-C96F-4996-8F1C-BB1371964FF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterlockedSample", "Mutiple Thread\InterlockedSample\InterlockedSample.csproj", "{FEC5433B-6BBD-48EF-A969-8D73DD9C727A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterlockedSample", "Mutiple Thread\InterlockedSample\InterlockedSample.csproj", "{FEC5433B-6BBD-48EF-A969-8D73DD9C727A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorSample", "Mutiple Thread\MonitorSample\MonitorSample.csproj", "{14A57FA1-42B1-420C-A004-8AEE77303DDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -271,6 +273,10 @@ Global
 		{FEC5433B-6BBD-48EF-A969-8D73DD9C727A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEC5433B-6BBD-48EF-A969-8D73DD9C727A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEC5433B-6BBD-48EF-A969-8D73DD9C727A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14A57FA1-42B1-420C-A004-8AEE77303DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14A57FA1-42B1-420C-A004-8AEE77303DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14A57FA1-42B1-420C-A004-8AEE77303DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14A57FA1-42B1-420C-A004-8AEE77303DDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -310,6 +316,7 @@ Global
 		{344C24DD-8567-4CA3-AF0A-B1CF1B77D881} = {0A430651-75E3-4DFC-8EFD-8F8B0EE57926}
 		{480E8BAB-C96F-4996-8F1C-BB1371964FF9} = {0A430651-75E3-4DFC-8EFD-8F8B0EE57926}
 		{FEC5433B-6BBD-48EF-A969-8D73DD9C727A} = {9B70E716-B1FC-4D2E-8536-98EE63699480}
+		{14A57FA1-42B1-420C-A004-8AEE77303DDD} = {9B70E716-B1FC-4D2E-8536-98EE63699480}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39DE7AC1-C284-40C6-80FF-58EC555767A0}
