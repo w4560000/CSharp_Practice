@@ -38,7 +38,6 @@ namespace MonitorSample
         public void func_monitor(object o)
         {
             Monitor.Enter(this);
-            Monitor.Pulse
             try
             {
                 Console.WriteLine($"{DateTime.Now} start-" + o);
