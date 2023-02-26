@@ -1,5 +1,6 @@
 ﻿using LeetCode.Interface;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 
@@ -18,10 +19,16 @@ namespace LeetCode
                     .Select(y => (IEntry)Activator.CreateInstance(y))
                     .FirstOrDefault();
 
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             if (entryMethod != null)
                 entryMethod.Main();
             else
                 Console.WriteLine("無此題號");
+
+            sw.Stop();
+            Console.WriteLine($"總耗時: {sw.ElapsedMilliseconds} ms");
 
             Console.ReadKey();
         }

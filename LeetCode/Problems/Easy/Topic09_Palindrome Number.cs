@@ -1,19 +1,20 @@
 ﻿using LeetCode.Interface;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace LeetCode.Problems.Easy
 {
+    /// <summary>
+    /// https://leetcode.com/problems/palindrome-number/
+    /// </summary>
     public class Topic09_Palindrome_Number : IEntry
     {
         public void Main()
         {
-            Console.WriteLine(IsPalindrome(-121));
+            Console.WriteLine(IsPalindrome一行解(121));
         }
 
-        public bool IsPalindrome(int x)
+        public bool IsPalindromeV1(int x)
         {
             // Special cases:
             // As discussed above, when x < 0, x is not a palindrome.
@@ -41,6 +42,22 @@ namespace LeetCode.Problems.Easy
         public bool IsPalindrome一行解(int x)
         {
             return x.ToString() == new string(x.ToString().Reverse().ToArray());
+        }
+
+        public bool IsPalindromeV2(int x)
+        {
+            if (x < 0)
+                return false;
+
+            string str = x.ToString();
+            string paStr = "";
+
+            for (int i = str.Length - 1; i >= 0; i--)
+            {
+                paStr += str[i];
+            }
+
+            return str == paStr;
         }
     }
 }
