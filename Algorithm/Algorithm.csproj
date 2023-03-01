@@ -46,6 +46,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sort\Bubble Sort.cs" />
+    <Compile Include="Sort\Selection Sort.cs" />
     <Compile Include="SwitchExecute.cs" />
   </ItemGroup>
   <ItemGroup>

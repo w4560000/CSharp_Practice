@@ -6,7 +6,7 @@ namespace Algorithm
     {
         private static void Main(string[] args)
         {
-            SwitchExecute.Bubble_Sort.ToString().EnterMethod(typeof(Program).Namespace);
+            SwitchExecute.Selection_Sort.ToString().EnterMethod(typeof(Program).Namespace);
         }
     }
 }

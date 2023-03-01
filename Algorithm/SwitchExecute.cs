@@ -8,6 +8,7 @@ namespace Algorithm
 {
     public enum SwitchExecute
     {
-        Bubble_Sort
+        Bubble_Sort,
+        Selection_Sort
     }
 }
