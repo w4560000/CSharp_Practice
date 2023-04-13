@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.1.32104.313
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPattern", "DesignPattern\DesignPattern.csproj", "{AF17DFC1-C632-4E56-849B-A2D3BC8DA838}"
 EndProject
@@ -137,7 +137,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaProducer", "Queue\Kafk
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterlockedSample", "Mutiple Thread\InterlockedSample\InterlockedSample.csproj", "{FEC5433B-6BBD-48EF-A969-8D73DD9C727A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorSample", "Mutiple Thread\MonitorSample\MonitorSample.csproj", "{14A57FA1-42B1-420C-A004-8AEE77303DDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonitorSample", "Mutiple Thread\MonitorSample\MonitorSample.csproj", "{14A57FA1-42B1-420C-A004-8AEE77303DDD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NoSQL", "NoSQL", "{FA1B6CF3-CBCB-4120-A017-B0E0E4103F62}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDB", "MongoDB", "{953A5BDA-AEB4-4E36-AD5A-B6AD2E9CA853}"
+	ProjectSection(SolutionItems) = preProject
+		NoSQL\MongoDB\CRUD.MD = NoSQL\MongoDB\CRUD.MD
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -317,6 +324,7 @@ Global
 		{480E8BAB-C96F-4996-8F1C-BB1371964FF9} = {0A430651-75E3-4DFC-8EFD-8F8B0EE57926}
 		{FEC5433B-6BBD-48EF-A969-8D73DD9C727A} = {9B70E716-B1FC-4D2E-8536-98EE63699480}
 		{14A57FA1-42B1-420C-A004-8AEE77303DDD} = {9B70E716-B1FC-4D2E-8536-98EE63699480}
+		{953A5BDA-AEB4-4E36-AD5A-B6AD2E9CA853} = {FA1B6CF3-CBCB-4120-A017-B0E0E4103F62}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39DE7AC1-C284-40C6-80FF-58EC555767A0}
