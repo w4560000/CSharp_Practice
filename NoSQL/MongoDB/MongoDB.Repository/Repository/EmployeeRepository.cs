@@ -37,6 +37,10 @@ namespace MongoDB.Repository.Repository
         {
             var empObj = _employeeTable.Find(f => f.Id == employee.Id).FirstOrDefault();
 
+            // 若沒上傳圖檔 則不更新圖檔
+            if (employee.Photo.Length == 0)
+                employee.Photo = empObj.Photo;
+
             if (empObj == null)
                 _employeeTable.InsertOne(employee);
             else

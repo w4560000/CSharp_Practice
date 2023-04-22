@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Repository.IRepository;
 using MongoDB.Repository.Models;
+using MongoDBWebSample.Models;
 
 namespace MongoDBWebSample.Controllers
 {
@@ -24,10 +25,26 @@ namespace MongoDBWebSample.Controllers
             return Json(employees);
         }
 
-        public JsonResult SaveEmp(Employee employee)
+        [HttpPost]
+        public string SaveEmp(EmployeeViewModel employee)
         {
-            var emp = _empRepo.Save(employee);
-            return Json(emp);
+            Employee entity = new Employee()
+            {
+                Id = employee.Id,
+                Name = employee.Name,
+                CardNumber = employee.CardNumber,
+                Salary = employee.Salary
+            };
+
+            if (employee.File != null && employee.File.Length > 0)
+            {
+                using var ms = new MemoryStream();
+                employee.File.CopyTo(ms);
+                entity.Photo = ms.ToArray();
+            }
+
+            var emp = _empRepo.Save(entity);
+            return emp.Id.Trim() != "" ? "Saved" : "Save Fail";
         }
 
         public JsonResult DeleteEmp(string empId)

@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        
+
         <div class="row">
             <div class="col-md-4">
                 <label>Card No :</label>
@@ -32,13 +32,23 @@
             </div>
         </div>
 
-        
+
         <div class="row">
             <div class="col-md-4">
                 <label>Salary :</label>
             </div>
             <div class="col-md-8">
                 <input id="txtSalary" class="inputField" type="number" style="width: 100%;" placeholder="Salary" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Photo :</label>
+            </div>
+            <div class="col-md-8">
+                <input id="filePhoto" type="file" value="Upload Photo" style="width: 100%" />
+                <img id="imgViewer" width="200" height="200" style="border: 1px solid #000000; margin-top: 10px;" />
             </div>
         </div>
 
@@ -58,6 +68,7 @@
                     <th>Name</th>
                     <th>CardNumber</th>
                     <th>Salary</th>
+                    <th>Photo</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -69,60 +80,88 @@
 <script src="~/jquery/jquery.min.js"></script>
 
 <script type="text/javascript">
-var _employees = [];
-$(document).ready(() => {
-    LoadEmployees();
-});
+    var _employees = [];
+    $(document).ready(() => {
+        LoadEmployees();
+    });
 
-function LoadEmployees() {
-    Reset();
-    $.get("../Employee/GetEmployees", (emps) => {
-        _employees = emps;
-        $.map(emps, (emp) => {
-            var tempStr = "<tr>";
-            tempStr += `<td>${emp.id}</td>`; 
-            tempStr += `<td>${emp.name}</td>`; 
-            tempStr += `<td>${emp.cardNumber}</td>`; 
-            tempStr += `<td>${emp.salary}</td>`; 
-            tempStr += `<td><button class='btn btn-primary' onclick='Edit("${emp.id}")'>Edit</button><button class='btn btn-danger' onclick='Delete("${emp.id}")'>Delete</button></td>`;
-            tempStr += "</tr>";
-            $("#tblEmployee tbody").append(tempStr);
+    $("#filePhoto").change((e) => {
+        var files = e.target.files;
+        $("#imgViewer").attr('src', window.URL.createObjectURL(files[0]));
+    });
+
+    function LoadEmployees() {
+        _employees = [];
+        $("#tblEmployee tbody tr").remove();
+        Reset();
+
+        $.get("../Employee/GetEmployees", (emps) => {
+            _employees = emps;
+            $.map(emps, (emp) => {
+                var tempStr = "<tr>";
+                tempStr += `<td>${emp.id}</td>`;
+                tempStr += `<td>${emp.name}</td>`;
+                tempStr += `<td>${emp.cardNumber}</td>`;
+                tempStr += `<td>${emp.salary}</td>`;
+
+                tempStr += `<td>` +
+                    (emp.photo != "" ? `<img id='${emp.id}_imgViewer' width='200' height='200' style='border: 1px solid #000000; margin-top: 10px;' src='data:image/jpg;base64,${emp.photo}' />` : "") +
+                    `</td>`;
+
+                tempStr += `<td><button class='btn btn-primary' onclick='Edit("${emp.id}")'>Edit</button><button class='btn btn-danger' onclick='Delete("${emp.id}")'>Delete</button></td>`;
+                tempStr += "</tr>";
+                $("#tblEmployee tbody").append(tempStr);
+            });
         });
-    });
-}
-
-function Reset() {
-    _employees = [];
-    $("#tblEmployee tbody tr").remove();
-    $(".inputField").val();
-}
-
-function Save() {
-    var employee = {
-        Id: $.trim($("#txtEmpId").val()),
-        Name: $.trim($("#txtName").val()),
-        CardNumber: $.trim($("#txtCardNumber").val()),
-        Salary: $.trim($("#txtSalary").val())
     }
-    
-    $.post("../Employee/SaveEmp", employee, (emp) => {
-        LoadEmployees();
-    });
-}
 
-function Edit(empId) {
-    var emp = _employees.find(f => f.id == empId);
-    $("#txtEmpId").val(emp.id);
-    $("#txtName").val(emp.name);
-    $("#txtCardNumber").val(emp.cardNumber);
-    $("#txtSalary").val(emp.salary);
-}
+    function Reset() {
+        $(".inputField").val("");
+        $("#filePhoto").val("");
+        $("#imgViewer").removeAttr("src");
+    }
 
-function Delete(empId) {
-    $.post(`../Employee/DeleteEmp?empId=${empId}`, (data) => {
-        alert(data);
-        LoadEmployees();
-    });
-}
+    function Save() {
+        var formData = new FormData();
+        formData.append("Id", $.trim($("#txtEmpId").val()));
+        formData.append("Name", $.trim($("#txtName").val()));
+        formData.append("CardNumber", $.trim($("#txtCardNumber").val()));
+        formData.append("Salary", $.trim($("#txtSalary").val()));
+
+        if ($("#filePhoto").prop("files").length > 0) {
+            formData.append("File", $("#filePhoto").prop("files")[0]);
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "../Employee/SaveEmp",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(msg) {
+                alert(msg);
+                LoadEmployees();
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    function Edit(empId) {
+        var emp = _employees.find(f => f.id == empId);
+        $("#txtEmpId").val(emp.id);
+        $("#txtName").val(emp.name);
+        $("#txtCardNumber").val(emp.cardNumber);
+        $("#txtSalary").val(emp.salary);
+        $("#imgViewer").attr('src', `data:image/jpg;base64,${emp.photo}`);
+    }
+
+    function Delete(empId) {
+        $.post(`../Employee/DeleteEmp?empId=${empId}`, (msg) => {
+            alert(msg);
+            LoadEmployees();
+        });
+    }
 
 </script>
