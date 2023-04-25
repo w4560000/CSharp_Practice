@@ -141,14 +141,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NoSQL", "NoSQL", "{FA1B6CF3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDB", "MongoDB", "{953A5BDA-AEB4-4E36-AD5A-B6AD2E9CA853}"
 	ProjectSection(SolutionItems) = preProject
+		NoSQL\MongoDB\Aggregate.MD = NoSQL\MongoDB\Aggregate.MD
 		NoSQL\MongoDB\CRUD.MD = NoSQL\MongoDB\CRUD.MD
+		NoSQL\MongoDB\Index.MD = NoSQL\MongoDB\Index.MD
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleOauth", "MVC5_Project\AppleOauth\AppleOauth.csproj", "{8B9592D4-B04D-4705-B92E-5E3769C69A78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDB.Repository", "NoSQL\MongoDB\MongoDB.Repository\MongoDB.Repository.csproj", "{FA7497F9-E5E5-4698-A50D-CA5C0A233741}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoDB.Repository", "NoSQL\MongoDB\MongoDB.Repository\MongoDB.Repository.csproj", "{FA7497F9-E5E5-4698-A50D-CA5C0A233741}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDBWebSample", "NoSQL\MongoDB\MongoDBWebSample\MongoDBWebSample.csproj", "{247941A0-86C2-4FD0-B673-00EF7B643C7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoDBWebSample", "NoSQL\MongoDB\MongoDBWebSample\MongoDBWebSample.csproj", "{247941A0-86C2-4FD0-B673-00EF7B643C7F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoDBConsole", "NoSQL\MongoDB\MongoDBConsole\MongoDBConsole.csproj", "{621D0853-3AFB-4239-A250-63A9F1154A0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -296,6 +300,10 @@ Global
 		{247941A0-86C2-4FD0-B673-00EF7B643C7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{247941A0-86C2-4FD0-B673-00EF7B643C7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{247941A0-86C2-4FD0-B673-00EF7B643C7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{621D0853-3AFB-4239-A250-63A9F1154A0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{621D0853-3AFB-4239-A250-63A9F1154A0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{621D0853-3AFB-4239-A250-63A9F1154A0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{621D0853-3AFB-4239-A250-63A9F1154A0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -339,6 +347,7 @@ Global
 		{8B9592D4-B04D-4705-B92E-5E3769C69A78} = {155EC608-2938-4834-9E24-8B5022884120}
 		{FA7497F9-E5E5-4698-A50D-CA5C0A233741} = {953A5BDA-AEB4-4E36-AD5A-B6AD2E9CA853}
 		{247941A0-86C2-4FD0-B673-00EF7B643C7F} = {953A5BDA-AEB4-4E36-AD5A-B6AD2E9CA853}
+		{621D0853-3AFB-4239-A250-63A9F1154A0E} = {953A5BDA-AEB4-4E36-AD5A-B6AD2E9CA853}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39DE7AC1-C284-40C6-80FF-58EC555767A0}

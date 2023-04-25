@@ -1,42 +1,42 @@
-## docker «Ø¥ß mongodb 
+## docker å»ºç«‹ mongodb 
 docker run --name mongo1 -v /home/leozheng0411/MonoDbData:/data/db -d -p 27017:27017 mongo
 
-## ¶i¤J container
+## é€²å…¥ container
 docker exec -it mongo1 bash
 
-## ¶}±Ò mongo cli
+## é–‹å•Ÿ mongo cli
 mongosh
 
 ## mongodb URL
 mongodb://10.10.10.10:27017
 
-# mongo »yªk
+# mongo èªæ³•
 
-## Åã¥Ü ©Ò¦³ database
+## é¡¯ç¤º æ‰€æœ‰ database
 show dbs
 
-## ¤Á´« database
+## åˆ‡æ› database
 use SchoolDB
 
-## «Ø¥ß collection
+## å»ºç«‹ collection
 db.createCollection("Students")
 
-## Åã¥Ü·í«e database ©Ò¦³ collection
+## é¡¯ç¤ºç•¶å‰ database æ‰€æœ‰ collection
 show collections
 
-## ·s¼W¤@µ§¸ê®Æ
+## æ–°å¢ä¸€ç­†è³‡æ–™
 db.Students.insert({"Name": "Allen", "Age": 20})
 
-## ·s¼W¦hµ§¸ê®Æ
+## æ–°å¢å¤šç­†è³‡æ–™
 db.Students.insertMany([{"Name": "Jacky", "Age": 22}, {"Name": "Leo", "Age": 23}, {"Name": "Jason", "Age": 24}])
 
-## ¬d¸ß collection
+## æŸ¥è©¢ collection
 db.Students.find()
 
-## ¬d¸ß collection Åã¥Ü Json
+## æŸ¥è©¢ collection é¡¯ç¤º Json
 db.Students.find().forEach(printjson)
 
-¥Ø«e¸ê®Æ
+ç›®å‰è³‡æ–™
 ```json
 {
   _id: ObjectId("64381617f1a9769370f0fdec"),
@@ -70,77 +70,77 @@ db.Students.find().forEach(printjson)
 }
 ```
 
-## ±ø¥ó¬d¸ß collection
+## æ¢ä»¶æŸ¥è©¢ collection
 
-©m¦W¬°Jackyªº¤@¦ì¾Ç¥Í  
+å§“åç‚ºJackyçš„ä¸€ä½å­¸ç”Ÿ  
 db.Students.findOne({"Name": "Jacky"})
 
-23·³ªº©Ò¦³¾Ç¥Í  
+23æ­²çš„æ‰€æœ‰å­¸ç”Ÿ  
 db.Students.find({"Age": {$eq:23}})
 
-¤£¬O23·³ªº©Ò¦³¾Ç¥Í  
+ä¸æ˜¯23æ­²çš„æ‰€æœ‰å­¸ç”Ÿ  
 db.Students.find({"Age": {$ne:23}})
 
-23·³¥H¤Wªº©Ò¦³¾Ç¥Í  
+23æ­²ä»¥ä¸Šçš„æ‰€æœ‰å­¸ç”Ÿ  
 db.Students.find({"Age": {$gt:23}})
 
-23·³(§t)¥H¤Wªº©Ò¦³¾Ç¥Í  
+23æ­²(å«)ä»¥ä¸Šçš„æ‰€æœ‰å­¸ç”Ÿ  
 db.Students.find({"Age": {$gte:23}})
 
-23·³¥H¤Uªº©Ò¦³¾Ç¥Í  
+23æ­²ä»¥ä¸‹çš„æ‰€æœ‰å­¸ç”Ÿ  
 db.Students.find({"Age": {$lt:23}})
 
-23·³(§t)¥H¤Uªº©Ò¦³¾Ç¥Í  
+23æ­²(å«)ä»¥ä¸‹çš„æ‰€æœ‰å­¸ç”Ÿ  
 db.Students.find({"Age": {$lte:23}})
 
-23·³¡B25·³ªº©Ò¦³¾Ç¥Í  
+23æ­²ã€25æ­²çš„æ‰€æœ‰å­¸ç”Ÿ  
 db.Students.find({"Age": {$in:[23,25]}})
 
-¤£¬O23·³¡B25·³ªº©Ò¦³¾Ç¥Í  
+ä¸æ˜¯23æ­²ã€25æ­²çš„æ‰€æœ‰å­¸ç”Ÿ  
 db.Students.find({"Age": {$nin:[23,25]}})
 
-©m¦W¬°James ¨Ã¥B ¬O25·³ªº©Ò¦³¾Ç¥Í  
+å§“åç‚ºJames ä¸¦ä¸” æ˜¯25æ­²çš„æ‰€æœ‰å­¸ç”Ÿ  
 db.Students.find({$and:[{"Name": "James"},{"Age": 25}]})
 
-©m¦W¬°James ©M ¬O24·³ªº©Ò¦³¾Ç¥Í  
+å§“åç‚ºJames å’Œ æ˜¯24æ­²çš„æ‰€æœ‰å­¸ç”Ÿ  
 db.Students.find({$or:[{"Name": "James"},{"Age": 24}]})
 
-©m¦W¤£¬°James ©M ¤£¬O24·³ªº©Ò¦³¾Ç¥Í  
+å§“åä¸ç‚ºJames å’Œ ä¸æ˜¯24æ­²çš„æ‰€æœ‰å­¸ç”Ÿ  
 db.Students.find({$nor:[{"Name": "James"},{"Age": 24}]})
 
-©m¦W¤£¬°Leoªº©Ò¦³¾Ç¥Í  
+å§“åä¸ç‚ºLeoçš„æ‰€æœ‰å­¸ç”Ÿ  
 db.Students.find({"Name": {$not:{$eq:"Leo"}}})
 
-©m¦W¬°Allen ¨Ã¥B ¬O20·³ ©Î 21·³ªº©Ò¦³¾Ç¥Í  
+å§“åç‚ºAllen ä¸¦ä¸” æ˜¯20æ­² æˆ– 21æ­²çš„æ‰€æœ‰å­¸ç”Ÿ  
 db.Students.find({"Name": "Allen", $or:[{"Age": 20}, {"Age": 21}]})
 
-## §ó·s
+## æ›´æ–°
 
-±N©m¦W¬°Jamesªº¾Ç¥Í §ï¦W¬° Lebron James  
+å°‡å§“åç‚ºJamesçš„å­¸ç”Ÿ æ”¹åç‚º Lebron James  
 db.Students.update({"Name": "James"},{$set:{"Name": "Lebron James"}})
 
-¥ı¦A·s¼W­Ó¾Ç¥Í Allen¡A¼ÒÀÀ±N¤@¦W©m¦W¬°Allenªº¾Ç¥Í §ï¬°30·³  
+å…ˆå†æ–°å¢å€‹å­¸ç”Ÿ Allenï¼Œæ¨¡æ“¬å°‡ä¸€åå§“åç‚ºAllençš„å­¸ç”Ÿ æ”¹ç‚º30æ­²  
 db.Students.insert({"Name": "Allen", "Age": 20})
 
-update¡BupdateOne ³£¬O³æµ§§ó·s  
+updateã€updateOne éƒ½æ˜¯å–®ç­†æ›´æ–°  
 db.Students.updateOne({"Name": "Allen"},{$set:{"Age": 30}})
 db.Students.update({"Name": "Allen"},{$set:{"Age": 30}})
 
-updateMany ¦hµ§§ó·s  
+updateMany å¤šç­†æ›´æ–°  
 db.Students.updateMany({"Name": "Allen"},{$set:{"Age": 30}})
 
-## §R°£
+## åˆªé™¤
 
-±N©m¦W¬°Jackyªº¤@¦W¾Ç¥Í§R°£  
+å°‡å§“åç‚ºJackyçš„ä¸€åå­¸ç”Ÿåˆªé™¤  
 db.Students.deleteOne({"Name": "Jacky"})
 
-±N©m¦W¬°Allenªº©Ò¦³¾Ç¥Í§R°£  
+å°‡å§“åç‚ºAllençš„æ‰€æœ‰å­¸ç”Ÿåˆªé™¤  
 db.Students.deleteMany({"Name": "Allen"})
 
-±N©Ò¦³¾Ç¥Í§R°£  
+å°‡æ‰€æœ‰å­¸ç”Ÿåˆªé™¤  
 db.Students.deleteMany({})
 
-## §R°£ collection
+## åˆªé™¤ collection
 
-§R°£ Students ªº collction
+åˆªé™¤ Students çš„ collction
 db.Students.drop()
