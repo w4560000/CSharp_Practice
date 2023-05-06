@@ -25,8 +25,6 @@ namespace MongoDBConsole
                 // 吐2萬筆資料測試
                 // SearchPostByLee();
 
-                var a1 = new Post();
-                var a = _postTable.Find(f => f.Like == 660).ToList();
                 Console.ReadKey();
             }
             catch (Exception ex)
