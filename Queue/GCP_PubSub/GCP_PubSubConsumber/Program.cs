@@ -20,7 +20,7 @@ namespace GCP_PubSubConsumber
 
         private static async Task StreamPull()
         {
-            SubscriptionName subscriptionName = new SubscriptionName("project-id", "Test-Topic-Sub02");
+            SubscriptionName subscriptionName = new SubscriptionName("project-id", "Test-Topic-Sub03");
             SubscriberClient subscriber = await SubscriberClient.CreateAsync(subscriptionName);
 
             await subscriber.StartAsync(async (msg, cancellationToken) =>
@@ -36,7 +36,7 @@ namespace GCP_PubSubConsumber
 
         private static async Task Pull()
         {
-            SubscriptionName subscriptionName = new SubscriptionName("project-id", "Test-Topic-Sub01");
+            SubscriptionName subscriptionName = new SubscriptionName("project-id", "Test-Topic-Sub03");
             SubscriberServiceApiClient subscriberClient = SubscriberServiceApiClient.Create();
             int messageCount = 0;
 
