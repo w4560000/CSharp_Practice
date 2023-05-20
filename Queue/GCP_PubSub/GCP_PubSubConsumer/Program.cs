@@ -1,10 +1,11 @@
 ﻿using Google.Cloud.PubSub.V1;
 using Grpc.Core;
 
-namespace GCP_PubSubConsumber
+namespace GCP_PubSubConsumer
 {
     internal class Program
     {
+        private static string projectId = "projectID";
         private static async Task Main(string[] args)
         {
             Console.WriteLine(" Start GCP_PubSubConsumber");
@@ -12,15 +13,17 @@ namespace GCP_PubSubConsumber
             // 憑證
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", @"C:\Lab\PubSub\pubsub-credential.json");
 
-            await StreamPull();
+            //await StreamPull();
 
             //await Pull();
+
+            await PullFilter();
             Console.ReadKey();
         }
 
         private static async Task StreamPull()
         {
-            SubscriptionName subscriptionName = new SubscriptionName("project-id", "Test-Topic-Sub03");
+            SubscriptionName subscriptionName = new SubscriptionName(projectId, "Test-Topic-Sub03");
             SubscriberClient subscriber = await SubscriberClient.CreateAsync(subscriptionName);
 
             await subscriber.StartAsync(async (msg, cancellationToken) =>
@@ -36,7 +39,7 @@ namespace GCP_PubSubConsumber
 
         private static async Task Pull()
         {
-            SubscriptionName subscriptionName = new SubscriptionName("project-id", "Test-Topic-Sub03");
+            SubscriptionName subscriptionName = new SubscriptionName(projectId, "Test-Topic-Sub03");
             SubscriberServiceApiClient subscriberClient = SubscriberServiceApiClient.Create();
             int messageCount = 0;
 
@@ -59,6 +62,24 @@ namespace GCP_PubSubConsumber
             {
                 // UNAVAILABLE due to too many concurrent pull requests pending for the given subscription.
             }
+        }
+
+        private static async Task PullFilter()
+        {
+            SubscriptionName subscriptionName = new SubscriptionName(projectId, "Test-Topic-SubFilter");
+            SubscriberServiceApiClient subscriberClient = SubscriberServiceApiClient.Create();
+
+            SubscriberClient subscriber = await SubscriberClient.CreateAsync(subscriptionName);
+
+            await subscriber.StartAsync(async (msg, cancellationToken) =>
+            {
+                Console.WriteLine($"MessageId {msg.MessageId}, Message: {msg.Data.ToStringUtf8()}, PublishTime {msg.PublishTime.ToDateTime()}");
+                //Console.WriteLine($"MessageId {msg.MessageId}, Delay");
+                //await Task.Delay(20000);
+                //Console.WriteLine($"MessageId {msg.MessageId}, Delay End");
+                // Return Reply.Ack to indicate this message has been handled.
+                return await Task.FromResult(SubscriberClient.Reply.Ack);
+            });
         }
     }
 }

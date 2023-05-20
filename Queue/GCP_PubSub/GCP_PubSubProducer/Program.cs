@@ -1,12 +1,13 @@
 ﻿using Google.Cloud.PubSub.V1;
 using Google.Protobuf;
 using Grpc.Core;
+using System.Text.Json;
 
 namespace GCP_PubSubProducer
 {
     internal class Program
     {
-        private static string projectId = "project-id";
+        private static string projectId = "projectID";
         private static string topicId = "Test-Topic";
         private static async Task Main(string[] args)
         {
@@ -15,7 +16,11 @@ namespace GCP_PubSubProducer
             // 憑證
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", @"C:\Lab\PubSub\pubsub-credential.json");
 
-            await PublishOrderKey();
+            //await Publish();
+
+            //await PublishOrderKey();
+
+            await PublishWithAttributes();
 
             Console.ReadKey();
         }
@@ -71,6 +76,32 @@ namespace GCP_PubSubProducer
                          Console.WriteLine($"{DateTime.Now:yyyy/MM/dd HH:mm:ss.fff} messageId:{messageId}, Sent {msg}");
                      })
                     );
+            }
+            catch (RpcException ex)
+            {
+                Console.WriteLine($"發布訊息到 Pub/Sub 時發生錯誤: {ex.Message}");
+            }
+        }
+
+        private static async Task PublishWithAttributes()
+        {
+            // 設定要發布的主題
+            TopicName topicName = new TopicName(projectId, topicId);
+            PublisherClient publisher = await PublisherClient.CreateAsync(topicName);
+
+            // 發布訊息
+            try
+            {
+                var pubsubMessage = new PubsubMessage
+                {
+                    Data = ByteString.CopyFromUtf8("123"),
+                    Attributes =
+                    {
+                        { "test", "888" }
+                    }
+                };
+                string messageId = await publisher.PublishAsync(pubsubMessage);
+                Console.WriteLine($"{DateTime.Now:yyyy/MM/dd HH:mm:ss.fff} messageId:{messageId}, Sent {JsonSerializer.Serialize(pubsubMessage)}");
             }
             catch (RpcException ex)
             {
