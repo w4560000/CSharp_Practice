@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search\Depth First Search.cs" />
+    <Compile Include="Search\Breadth First Search.cs" />
     <Compile Include="Sort\Bubble Sort.cs" />
     <Compile Include="Sort\Selection Sort.cs" />
     <Compile Include="SwitchExecute.cs" />
