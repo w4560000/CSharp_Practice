@@ -160,7 +160,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GCP_PubSubProducer", "Queue
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GCP_PubSubConsumer", "Queue\GCP_PubSub\GCP_PubSubConsumer\GCP_PubSubConsumer.csproj", "{DE6CFACF-2FBE-46FE-A921-5FCBEBCD5230}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCP_PubSubConsumerPush", "Queue\GCP_PubSub\GCP_PubSubConsumerPush\GCP_PubSubConsumerPush.csproj", "{6DE9FBEB-B810-4E8B-9024-DDEE542C48B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GCP_PubSubConsumerPush", "Queue\GCP_PubSub\GCP_PubSubConsumerPush\GCP_PubSubConsumerPush.csproj", "{6DE9FBEB-B810-4E8B-9024-DDEE542C48B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Redis", "Redis", "{8FE594E7-D3F3-4650-BC7F-07926D5E5218}"
+	ProjectSection(SolutionItems) = preProject
+		NoSQL\Redis\Init.md = NoSQL\Redis\Init.md
+		NoSQL\Redis\redis.conf = NoSQL\Redis\redis.conf
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisTest", "NoSQL\Redis\RedisTest\RedisTest.csproj", "{1F45908A-3FD7-484D-B363-C538C90E2EDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -324,6 +332,10 @@ Global
 		{6DE9FBEB-B810-4E8B-9024-DDEE542C48B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DE9FBEB-B810-4E8B-9024-DDEE542C48B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DE9FBEB-B810-4E8B-9024-DDEE542C48B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F45908A-3FD7-484D-B363-C538C90E2EDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F45908A-3FD7-484D-B363-C538C90E2EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F45908A-3FD7-484D-B363-C538C90E2EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F45908A-3FD7-484D-B363-C538C90E2EDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -372,6 +384,8 @@ Global
 		{DFAC0F6C-8E7B-4D3C-B790-955AE91F8852} = {62D68B2E-CFA1-4FBE-8079-F4B8F09C67F2}
 		{DE6CFACF-2FBE-46FE-A921-5FCBEBCD5230} = {62D68B2E-CFA1-4FBE-8079-F4B8F09C67F2}
 		{6DE9FBEB-B810-4E8B-9024-DDEE542C48B1} = {62D68B2E-CFA1-4FBE-8079-F4B8F09C67F2}
+		{8FE594E7-D3F3-4650-BC7F-07926D5E5218} = {FA1B6CF3-CBCB-4120-A017-B0E0E4103F62}
+		{1F45908A-3FD7-484D-B363-C538C90E2EDA} = {8FE594E7-D3F3-4650-BC7F-07926D5E5218}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39DE7AC1-C284-40C6-80FF-58EC555767A0}
