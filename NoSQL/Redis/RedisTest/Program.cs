@@ -13,24 +13,21 @@ namespace RedisTest
 
         static void Main(string[] args)
         {
-            var a = Get<string>("a");
+            try
+            {
+                for (int i = 0; i < 1000; i++)
+                {
+                    conn.GetDatabase().StringSet($"Key{i}", i.ToString());
 
-            Delete("a");
-            //try
-            //{
-            //    for(int i = 0; i < 100; i++)
-            //    {
-            //        Update("a", i.ToString());
+                    Console.WriteLine($"已更新 Key{i} 為 {i}");
 
-            //        Console.WriteLine($"已更新為 {i}");
-
-            //        Thread.Sleep(1000);
-            //    }
-            //}
-            //catch(Exception ex)
-            //{
-            //    Console.WriteLine(ex.ToString());
-            //}
+                    Thread.Sleep(1000);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
 
             Console.ReadKey();
         }
