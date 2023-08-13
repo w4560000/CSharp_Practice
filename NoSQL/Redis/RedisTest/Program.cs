@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Polly;
 using Polly.Retry;
 using StackExchange.Redis;
 
@@ -80,40 +79,58 @@ namespace RedisTest
         {
             try
             {
-                var retryPolicy = Policy.Handle<RedisConnectionException>()
-                                        .Or<RedisTimeoutException>()
-                                        .Retry(3, (exception, retryCount) =>
-                                        {
-                                            Console.WriteLine($"Redis connection failed. Retrying ({retryCount})...");
-                                        });
+                //var configString = "35.194.230.192:6379";
+                //ConfigurationOptions options = ConfigurationOptions.Parse(configString);
+                //var conn = ConnectionMultiplexer.Connect(options);
+                //var a = conn.GetDatabase().StringGetAsync("test3").Result;
+
+                //CSRedisClient client = new CSRedisClient("35.194.230.192:6379");
+                //var a = client.Get("Key1");
+                //return;
+
+                //var retryPolicy = Policy.Handle<RedisConnectionException>()
+                //                        .Or<RedisTimeoutException>()
+                //                        .Retry(3, (exception, retryCount) =>
+                //                        {
+                //                            Console.WriteLine($"Redis connection failed. Retrying ({retryCount})...");
+                //                        });
 
                 var configuration = new ConfigurationOptions()
                 {
-                    EndPoints = { "34.80.100.152:6379", "35.221.204.1:6379", "35.229.217.216:6379" },
+                    EndPoints = {
+                        { "35.194.230.192:6379" },
+                        //{ "34.81.254.51:6379" },
+                        //{ "35.185.134.146:6379" },
+                        //{ "34.81.74.195:6379" },
+                        //{ "34.81.147.95:6379" },
+                        //{ "35.201.133.198:6379" }
+                    },
                     AbortOnConnectFail = false,
-                    ConnectTimeout = 10000,
+                    ConnectTimeout = 5000,
                     SyncTimeout = 3000,
-                    ConnectRetry = 5
+                    ConnectRetry = 3,
                 };
 
-                var redisConnectionManager = new RedisConnectionManager(configuration, retryPolicy);
-                var redisConnection = redisConnectionManager.GetConnection();
-
-                while (true)
+                using (TextWriter log = File.CreateText("D:\\redis_log.txt"))
                 {
-                    Console.WriteLine($"是否已連接: {redisConnection.IsConnected}");
-                    var value = redisConnectionManager.Get<string>("Key1");
-                    var newValue = Convert.ToInt32(value) + 1;
+                    Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff") + " Connect Start");
+                    var redisConnectionManager = ConnectionMultiplexer.Connect(configuration, log);
+                    Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff") + " Connect End");
 
-                    Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} 預計更新為 {newValue}");
-                    redisConnectionManager.Update("Key1", newValue.ToString());
-                    Console.WriteLine($"更新後確認 {redisConnectionManager.Get<string>("Key1")}\n");
-                    Thread.Sleep(1000);
+                    try
+                    {
+                        var key1 = redisConnectionManager.GetDatabase().StringGet("Key1");
+                        Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff") + $" Key1:{key1}" + "\n");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff") + $" GetKey Error {ex.Message}");
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} {ex.Message}");
+                Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff") + $" Error {ex.Message}");
             }
 
             Console.ReadKey();
