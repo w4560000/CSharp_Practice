@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Polly;
 using Polly.Retry;
 using StackExchange.Redis;
 
@@ -11,13 +12,14 @@ namespace RedisTest
         private readonly ConfigurationOptions _configurationOptions;
         private readonly RetryPolicy _retryPolicy;
 
-        public RedisConnectionManager(ConfigurationOptions configurationOptions, RetryPolicy retryPolicy)
+        public RedisConnectionManager(ConfigurationOptions configurationOptions, RetryPolicy retryPolicy, TextWriter log)
         {
             _configurationOptions = configurationOptions;
             _retryPolicy = retryPolicy;
+            GetConnection(log);
         }
 
-        public IConnectionMultiplexer GetConnection()
+        public IConnectionMultiplexer GetConnection(TextWriter log)
         {
             return _retryPolicy.Execute(() =>
             {
@@ -26,7 +28,7 @@ namespace RedisTest
                     lock (_lock)
                     {
                         _connectionMultiplexer?.Close();
-                        _connectionMultiplexer = ConnectionMultiplexer.Connect(_configurationOptions);
+                        _connectionMultiplexer = ConnectionMultiplexer.Connect(_configurationOptions, log);
                     }
                 }
 
@@ -40,7 +42,7 @@ namespace RedisTest
             {
                 try
                 {
-                    var value = _connectionMultiplexer.GetDatabase().StringGet(key);
+                    var value = _connectionMultiplexer.GetDatabase().StringGet(key, flags: CommandFlags.DemandMaster);
 
                     if (value.IsNullOrEmpty)
                         return default;
@@ -61,7 +63,7 @@ namespace RedisTest
             {
                 try
                 {
-                    _connectionMultiplexer.GetDatabase().StringSet(key, data);
+                    _connectionMultiplexer.GetDatabase().StringSet(key, data, flags: CommandFlags.DemandMaster);
                     Console.WriteLine("已更新");
                 }
                 catch (Exception ex)
@@ -79,31 +81,20 @@ namespace RedisTest
         {
             try
             {
-                //var configString = "35.194.230.192:6379";
-                //ConfigurationOptions options = ConfigurationOptions.Parse(configString);
-                //var conn = ConnectionMultiplexer.Connect(options);
-                //var a = conn.GetDatabase().StringGetAsync("test3").Result;
-
-                //CSRedisClient client = new CSRedisClient("35.194.230.192:6379");
-                //var a = client.Get("Key1");
-                //return;
-
-                //var retryPolicy = Policy.Handle<RedisConnectionException>()
-                //                        .Or<RedisTimeoutException>()
-                //                        .Retry(3, (exception, retryCount) =>
-                //                        {
-                //                            Console.WriteLine($"Redis connection failed. Retrying ({retryCount})...");
-                //                        });
+                var retryPolicy = Policy.Handle<RedisConnectionException>()
+                                        .Or<RedisTimeoutException>()
+                                        .Or<RedisServerException>()
+                                        .WaitAndRetry(3, _ => TimeSpan.FromSeconds(1), (exception, retryCount) =>
+                                        {
+                                            Console.WriteLine($"Redis connection failed. Retrying ({retryCount})...");
+                                        });
 
                 var configuration = new ConfigurationOptions()
                 {
                     EndPoints = {
-                        { "35.194.230.192:6379" },
-                        //{ "34.81.254.51:6379" },
-                        //{ "35.185.134.146:6379" },
-                        //{ "34.81.74.195:6379" },
-                        //{ "34.81.147.95:6379" },
-                        //{ "35.201.133.198:6379" }
+                        { "35.221.130.206:6379" },
+                        { "107.167.177.175:6379" },
+                        { "35.221.245.206:6379" },
                     },
                     AbortOnConnectFail = false,
                     ConnectTimeout = 5000,
@@ -113,14 +104,22 @@ namespace RedisTest
 
                 using (TextWriter log = File.CreateText("D:\\redis_log.txt"))
                 {
-                    Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff") + " Connect Start");
-                    var redisConnectionManager = ConnectionMultiplexer.Connect(configuration, log);
-                    Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff") + " Connect End");
-
                     try
                     {
-                        var key1 = redisConnectionManager.GetDatabase().StringGet("Key1");
-                        Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff") + $" Key1:{key1}" + "\n");
+                        while (true)
+                        {
+                            var redisConnectionManager = new RedisConnectionManager(configuration, retryPolicy, log);
+
+                            var value = redisConnectionManager.Get<string>("Key1");
+                            Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} Key1 = {value}");
+
+                            var newValue = Convert.ToInt32(value) + 1;
+
+                            Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} Key1 預計更新為 {newValue}");
+                            redisConnectionManager.Update("Key1", newValue.ToString());
+                            Console.WriteLine($"更新後確認 Key1 = {redisConnectionManager.Get<string>("Key1")}\n");
+                            //Thread.Sleep(100);
+                        }
                     }
                     catch (Exception ex)
                     {
