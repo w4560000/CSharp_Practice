@@ -1,4 +1,5 @@
 ﻿using System;
+using EventSample.Sapmle3;
 
 namespace EventSample
 {
@@ -9,11 +10,13 @@ namespace EventSample
     {
         public static void Main()
         {
-            // TestDelegate();
+            //TestDelegate();
 
             //new Sample1().Run();
 
-            // new Sample2().Run();
+            new Sample2().Run();
+
+            //new Sample3().Run();
 
             Console.Read();
         }
