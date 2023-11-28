@@ -10,8 +10,8 @@ namespace Algorithm.Bubble_Sort
         public void Main()
         {
             Console.WriteLine("泡沫排序\n");
-            //List<int> list = new List<int>() { 2, 3, 1, 6, 2, 9, 4, 1, 7 };
-            List<int> list = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            List<int> list = new List<int>() { 2, 3, 1, 6, 2, 9, 4, 1, 7 };
+            //List<int> list = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             Console.WriteLine($"排序前數列:{string.Join(",", list)}");
 
             BubbleSortV2(list);

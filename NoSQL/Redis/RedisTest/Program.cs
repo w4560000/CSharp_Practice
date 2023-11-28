@@ -16,6 +16,8 @@ namespace RedisTest
             // 故障轉移測試
             // new FailoverTest().Run();
 
+            new FunctionTest().Main();
+
             Console.ReadKey();
         }
     }
