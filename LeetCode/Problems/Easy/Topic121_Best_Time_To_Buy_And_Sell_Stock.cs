@@ -1,10 +1,5 @@
 ﻿using LeetCode.Interface;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ExceptionServices;
-using System.Transactions;
 
 namespace LeetCode.Problems.Easy
 {
@@ -20,8 +15,8 @@ namespace LeetCode.Problems.Easy
     {
         public void Main()
         {
-            //Console.WriteLine(S1(new int[] { 7, 1, 5, 3, 6, 4 }));
-            Console.WriteLine(S1(new int[] { 7,6,4,3,1 }));
+            Console.WriteLine(S1(new int[] { 7, 1, 5, 3, 6, 4 }));
+            //Console.WriteLine(S1(new int[] { 7, 6, 4, 3, 1 }));
         }
 
         public int S1(int[] nums)
@@ -29,7 +24,7 @@ namespace LeetCode.Problems.Easy
             int buyPrice = nums[0];
             int profit = 0;
 
-            for (int i = 1; i < nums.Length; i ++)
+            for (int i = 1; i < nums.Length; i++)
             {
                 if (buyPrice > nums[i])
                     buyPrice = nums[i];

@@ -12,10 +12,10 @@ namespace LeetCode
         {
             Console.WriteLine("輸入 Leetcode 題號:");
             string number = Console.ReadLine();
-
+            number = int.Parse(number).ToString("00");
             var entryMethod = Assembly.GetExecutingAssembly()
                     .GetExportedTypes()
-                    .Where(x => typeof(IEntry).IsAssignableFrom(x) && !x.IsInterface && x.Name.StartsWith("Topic" + number))
+                    .Where(x => typeof(IEntry).IsAssignableFrom(x) && !x.IsInterface && x.Name.StartsWith("Topic" + number + "_"))
                     .Select(y => (IEntry)Activator.CreateInstance(y))
                     .FirstOrDefault();
 
