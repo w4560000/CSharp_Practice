@@ -9,6 +9,8 @@ namespace CancellationTokenSourceSample
 {
     /// <summary>
     /// MSDN https://docs.microsoft.com/zh-tw/dotnet/api/system.threading.CancellationTokenSource
+    /// 
+    /// Register = 被呼叫 Cancel 會執行的
     /// </summary>
     internal class Program
     {
@@ -40,7 +42,7 @@ namespace CancellationTokenSourceSample
 
             // CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
             // CancellationTokenSource cancellationTokenSource = new CancellationTokenSource(1);
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(1));
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(1)); // 1秒後 觸發 Register
 
             cancellationTokenSource.Token.Register(() => Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms 工作已取消"));
 
@@ -55,19 +57,20 @@ namespace CancellationTokenSourceSample
         /// 建立有連結的CancellationTokenSource
         /// 當用來建立的任一CancellationTokenSource被Cancel掉時，該LinkedTokenSource也同樣被Cancel掉
         ///
-        /// 測試呼叫 CreateLinkedTokenSource
+        /// notCancellationTokenSource 與 cancellationTokenSource 不影響
+        /// 但 其中任一個 Cancel 掉，會連帶影響 testCancellationTokenSource
         /// </summary>
         public static void CreateLinkedTokenSource()
         {
             CancellationTokenSource notCancellationTokenSource = new CancellationTokenSource();
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
-            CancellationTokenSource test = CancellationTokenSource.CreateLinkedTokenSource(notCancellationTokenSource.Token, cancellationTokenSource.Token);
+            CancellationTokenSource testCancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(notCancellationTokenSource.Token, cancellationTokenSource.Token);
             cancellationTokenSource.Cancel();
 
             Console.WriteLine($"notCancellationTokenSource類別是否被Cancel了 = {notCancellationTokenSource.IsCancellationRequested}");
             Console.WriteLine($"cancellationTokenSource類別是否被Cancel了 = {cancellationTokenSource.IsCancellationRequested}");
-            Console.WriteLine($"該CancellationTokenSource類別是否被Cancel了 = {test.IsCancellationRequested}");
+            Console.WriteLine($"該CancellationTokenSource類別是否被Cancel了 = {testCancellationTokenSource.IsCancellationRequested}");
         }
 
         /// <summary>
@@ -128,8 +131,8 @@ namespace CancellationTokenSourceSample
                 cancellationTokenSource.Token.Register(() => Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms Task Canceled2"));
                 cancellationTokenSource.Token.Register(() => Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms Task Canceled3"));
                 cancellationTokenSource.Token.Register(() => Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms Task Canceled4"));
-                cancellationTokenSource.Token.Register(() => throw new Exception($"{stopwatch.ElapsedMilliseconds} ms Task Canceled"));
                 cancellationTokenSource.Token.Register(() => Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms Task Canceled5"));
+                cancellationTokenSource.Token.Register(() => Console.WriteLine($"{stopwatch.ElapsedMilliseconds} ms Task Canceled6"));
 
                 Task.Run(() =>
                 {
@@ -213,7 +216,7 @@ namespace CancellationTokenSourceSample
 
             // 3秒後dispose掉CancellationTokenSource，清除掉CancelAfter的timer和Register動作
             Thread.Sleep(3000);
-            cancellationTokenSource.Dispose();
+            cancellationTokenSource.Dispose(); // 在 Cancel前就清掉 則 CancelAfter 無效
 
             // 被dispose掉後除了IsCancellationRequested之外  其餘方法無法再調用，會噴Exception
             //cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(2));

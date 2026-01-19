@@ -20,9 +20,11 @@ namespace TaskAPI
 
             #endregion
 
+            Console.WriteLine($"Main Thread= {Thread.CurrentThread.ManagedThreadId}, Start");
+
             t1.Start();
 
-            Console.WriteLine($"Main Thread= {Thread.CurrentThread.ManagedThreadId}");
+            Console.WriteLine($"Main Thread= {Thread.CurrentThread.ManagedThreadId}, End");
 
             Console.ReadKey();
         }

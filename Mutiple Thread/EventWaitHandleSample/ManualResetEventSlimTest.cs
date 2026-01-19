@@ -52,10 +52,10 @@ namespace EventWaitHandleSample
         /// <summary>
         /// 測試 ManualResetEventSlim SpinCount
         /// SpinCount 預設為 10
-        /// 
+        ///
         /// 查看SourceCode 發現 SpinCount 不能 < 0 & > 2047
         /// 且在單核心時 SpinCount 為1
-        /// 
+        ///
         /// 但並非是 SpinCount 次數內 每次都執行 SpinWait，還有一些算法 呼叫 Thread.Yield()、Thread.Sleep(1)、Thread.Sleep(0)
         /// https://referencesource.microsoft.com/#mscorlib/system/threading/ManualResetEventSlim.cs,542
         /// </summary>
@@ -73,18 +73,21 @@ namespace EventWaitHandleSample
                 Console.WriteLine($"Task signalling both MRESes before, {DateTime.Now:yyyyMMdd hh:mm:ss.fff}");
 
                 // Just wait a little
-                Thread.Sleep(10000);
+                Thread.Sleep(5000);
+
+                mres1.Set();
 
                 // Now signal both MRESes
                 Console.WriteLine($"Task signalling both MRESes, {DateTime.Now:yyyyMMdd hh:mm:ss.fff}");
-                mres1.Set();
+
+                Thread.Sleep(5000);
                 mres2.Set();
             });
 
             // A common use of MRES.WaitHandle is to use MRES as a participant in
             // WaitHandle.WaitAll/WaitAny.  Note that accessing MRES.WaitHandle will
             // result in the unconditional inflation of the underlying ManualResetEvent.
-            WaitHandle.WaitAll(new WaitHandle[] { mres1.WaitHandle, mres2.WaitHandle });
+            WaitHandle.WaitAll(new WaitHandle[] { mres1.WaitHandle, mres2.WaitHandle }); // 兩者都set後 (門打開) 才放行
             Console.WriteLine($"WaitHandle.WaitAll(mres1.WaitHandle, mres2.WaitHandle) completed, {DateTime.Now:yyyyMMdd hh:mm:ss.fff}");
 
             // Clean up

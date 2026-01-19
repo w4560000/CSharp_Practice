@@ -8,6 +8,8 @@ namespace EventWaitHandleSample
     /// MSDN https://docs.microsoft.com/zh-tw/dotnet/api/system.threading.AutoResetEvent
     /// 
     /// 任一 Thread 通過 WaitOne()後，門自動上鎖 (一次只允許一個 Thread 執行)
+    /// 
+    /// todo 跨process AutoResetEvent 可設定名稱
     /// </summary>
     public class AutoResetEventTest
     {
@@ -26,8 +28,8 @@ namespace EventWaitHandleSample
         public void Run()
         {
             //AutoResetEvent_State_false_Test();
-            AutoResetEvent_State_true_Test();
-            //AutoResetEvent_MutlipleThread_Test();
+            //AutoResetEvent_State_true_Test();
+            AutoResetEvent_MutlipleThread_Test();
         }
 
         private static void AutoResetEvent_State_false_Test()
