@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,18 +19,19 @@ namespace EventWaitHandleSample
         ///                        true  -> 代表現在是 Set()   狀態，  有信號 => 門敞開 其他 Thread 執行 WaitOne() 無效果
         ///                        false -> 代表現在是 Reset() 狀態，  無信號 => 門上鎖 其他 Thread 執行 WaitOne() 有效果
         ///
-        /// AutoResetEvent WaitOne() => 若當下有信號 則無阻塞效果
-        ///                             若當下無信號 則阻塞當前 Thread，且任一 Thread WaitOne()後，自動賦予狀態(門上鎖)
+        /// AutoResetEvent WaitOne() => 若當下有信號 則無阻塞效果，但任一 Thread WaitOne() 通過後，則門上鎖
+        ///                             若當下無信號 則阻塞當前 Thread
         /// </summary>
         private static AutoResetEvent _AutoResetEvent_initialState_false = new AutoResetEvent(false);
 
         private static AutoResetEvent _AutoResetEvent_initialState_true = new AutoResetEvent(true);
 
-        public void Run()
+        public void Run(bool isUnlock)
         {
             //AutoResetEvent_State_false_Test();
             //AutoResetEvent_State_true_Test();
-            AutoResetEvent_MutlipleThread_Test();
+            //AutoResetEvent_MutlipleThread_Test();
+            EventWaitHandle_MutlipleProcess_Test(isUnlock);
         }
 
         private static void AutoResetEvent_State_false_Test()
@@ -87,6 +89,32 @@ namespace EventWaitHandleSample
         {
             _AutoResetEvent_initialState_false.WaitOne();
             Console.WriteLine($"{thread}, {DateTime.Now}");
+        }
+
+        /// <summary>
+        /// 可跨Process阻塞
+        /// </summary>
+        /// <param name="isUnlock"></param>
+        private static void EventWaitHandle_MutlipleProcess_Test(bool isUnlock = true)
+        {
+            using var autoResetEvent = new EventWaitHandle(
+                false,                      // initialState
+                EventResetMode.ManualReset,   // AutoReset
+                @"Global\My_CrossProcess_AutoResetEvent"                   // 名稱 → 跨 Process
+            );
+
+            if (!isUnlock)
+            {
+                Console.WriteLine($"[{Process.GetCurrentProcess().Id}] Waiting...");
+                autoResetEvent.WaitOne(); // ← 這裡會阻塞
+
+                Console.WriteLine($"[{Process.GetCurrentProcess().Id}] Released!");
+            }
+            else
+            {
+                Console.WriteLine($"[{Process.GetCurrentProcess().Id}] Set signal");
+                autoResetEvent.Set(); // ← 門打開
+            }
         }
 
         /// <summary>

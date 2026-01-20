@@ -89,7 +89,7 @@ namespace EventWaitHandleSample
             // result in the unconditional inflation of the underlying ManualResetEvent.
             WaitHandle.WaitAll(new WaitHandle[] { mres1.WaitHandle, mres2.WaitHandle }); // 兩者都set後 (門打開) 才放行
             Console.WriteLine($"WaitHandle.WaitAll(mres1.WaitHandle, mres2.WaitHandle) completed, {DateTime.Now:yyyyMMdd hh:mm:ss.fff}");
-
+            
             // Clean up
             bgTask.Wait();
             mres1.Dispose();
