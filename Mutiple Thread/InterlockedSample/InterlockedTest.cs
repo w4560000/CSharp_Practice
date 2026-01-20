@@ -20,7 +20,8 @@ namespace InterlockedSample
             //TestCompareExchange2();
             //TestDecrement();
             //TestIncrement();
-            TestExchange();
+            //TestExchange();
+            TestSpinLock();
         }
 
         public void TestAdd()
@@ -28,6 +29,7 @@ namespace InterlockedSample
             void Add()
             {
                 int a = Interlocked.Add(ref Balance_Add, 10);
+                //int a = Balance_Add = Balance_Add + 10; // 沒Lock住 在多執行續下 會計算錯誤
                 Console.WriteLine($"Balance_Add: {Balance_Add}, a: {a}");
             }
 
@@ -158,6 +160,38 @@ namespace InterlockedSample
                 Balance_Exchange++;
                 Console.WriteLine($"Balance_Exchange: {Balance_Exchange}");
                 Interlocked.Exchange(ref lockedFlag, 0);
+            }
+
+            List<Task> taskCollection = new List<Task>();
+
+            for (int i = 0; i < 1000; i++)
+                taskCollection.Add(Task.Factory.StartNew(() => Exchange()));
+
+            //等待所有任務完成
+            Task.WaitAll(taskCollection.ToArray());
+            Console.WriteLine($"Total Balance_Exchange: {Balance_Exchange}");
+        }
+
+        /// <summary>
+        /// 註記 SpinLock 在區塊中間 不要使用 await 其他方法，可能造成死鎖
+        /// </summary>
+        public void TestSpinLock()
+        {
+            var spinLock = new SpinLock();
+            void Exchange()
+            {
+                bool lockTaken = false;
+                try
+                {
+                    spinLock.Enter(ref lockTaken);
+                    Balance_Exchange++;
+                    Console.WriteLine($"Balance_Exchange: {Balance_Exchange}");
+                }
+                finally
+                {
+                    if (lockTaken)
+                        spinLock.Exit();
+                }
             }
 
             List<Task> taskCollection = new List<Task>();

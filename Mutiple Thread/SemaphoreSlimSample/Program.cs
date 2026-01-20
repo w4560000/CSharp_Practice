@@ -6,6 +6,7 @@ namespace SemaphoreSlimSample
 {
     /// <summary>
     /// SemaphoreSlim 提供了非同步的 WaitAsync 方法、CancellationToken 參數
+    /// 不能跨Process，但較輕量
     /// </summary>
     internal class Program
     {

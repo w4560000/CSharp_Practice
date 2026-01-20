@@ -38,7 +38,7 @@ namespace SemaphoreSample
     //  編號7出洗手間：2022/5/16 下午 02:12:40
     internal class ThreadTest
     {
-        private Semaphore semaphore = new Semaphore(5, 5);
+        private Semaphore semaphore = new Semaphore(2, 10);
 
         public void StartThread()
         {

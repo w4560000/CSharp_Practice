@@ -13,8 +13,8 @@ namespace MutexSample
         private static void Main(string[] args)
         {
             // test cross thread initiallyOwned = true
-            //var threadTestnew = new ThreadTest(true);
-            //threadTestnew.StartThreads();
+            var threadTestnew = new ThreadTest(true);
+            threadTestnew.StartThreads();
 
             //Thread.Sleep(3000);
             //Console.WriteLine("Program 開鎖");
