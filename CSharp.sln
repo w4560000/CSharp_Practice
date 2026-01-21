@@ -174,6 +174,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Event", "Event", "{D958FB60
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSample", "Event\EventSample\EventSample.csproj", "{E9FA4063-3918-43D0-8B7A-A5C6DBFCE3E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopicPractice", "Mutiple Thread\TopicPractice\TopicPractice.csproj", "{D7C933EB-0AE4-40DD-AB08-42B5E10A6F47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -344,6 +346,10 @@ Global
 		{E9FA4063-3918-43D0-8B7A-A5C6DBFCE3E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9FA4063-3918-43D0-8B7A-A5C6DBFCE3E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9FA4063-3918-43D0-8B7A-A5C6DBFCE3E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7C933EB-0AE4-40DD-AB08-42B5E10A6F47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7C933EB-0AE4-40DD-AB08-42B5E10A6F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7C933EB-0AE4-40DD-AB08-42B5E10A6F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7C933EB-0AE4-40DD-AB08-42B5E10A6F47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -395,6 +401,7 @@ Global
 		{8FE594E7-D3F3-4650-BC7F-07926D5E5218} = {FA1B6CF3-CBCB-4120-A017-B0E0E4103F62}
 		{1F45908A-3FD7-484D-B363-C538C90E2EDA} = {8FE594E7-D3F3-4650-BC7F-07926D5E5218}
 		{E9FA4063-3918-43D0-8B7A-A5C6DBFCE3E3} = {D958FB60-9534-4EBF-B06C-DF88872B5A0F}
+		{D7C933EB-0AE4-40DD-AB08-42B5E10A6F47} = {9B70E716-B1FC-4D2E-8536-98EE63699480}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39DE7AC1-C284-40C6-80FF-58EC555767A0}
